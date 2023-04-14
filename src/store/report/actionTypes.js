@@ -1,0 +1,34 @@
+/**
+ * get report overview
+ */
+export const GET_REPORT_OVERVIEW = "GET_REPORT_OVERVIEW"
+export const GET_REPORT_OVERVIEW_SUCCESS = "GET_REPORT_OVERVIEW_SUCCESS"
+export const GET_REPORT_OVERVIEW_FAIL = "GET_REPORT_OVERVIEW_FAIL"
+
+/**
+ * get report crew
+ */
+export const GET_REPORT_CREW = "GET_REPORT_CREW"
+export const GET_REPORT_CREW_SUCCESS = "GET_REPORT_CREW_SUCCESS"
+export const GET_REPORT_CREW_FAIL = "GET_REPORT_CREW_FAIL"
+
+/**
+ * get report customer
+ */
+export const GET_REPORT_CUSTOMER = "GET_REPORT_CUSTOMER"
+export const GET_REPORT_CUSTOMER_SUCCESS = "GET_REPORT_CUSTOMER_SUCCESS"
+export const GET_REPORT_CUSTOMER_FAIL = "GET_REPORT_CUSTOMER_FAIL"
+
+/**
+ * get report tax
+ */
+export const GET_REPORT_TAX = "GET_REPORT_TAX"
+export const GET_REPORT_TAX_SUCCESS = "GET_REPORT_TAX_SUCCESS"
+export const GET_REPORT_TAX_FAIL = "GET_REPORT_TAX_FAIL"
+
+/**
+ * get report diagram
+ */
+export const GET_DIAGRAM = "GET_DIAGRAM"
+export const GET_DIAGRAM_SUCCESS = "GET_DIAGRAM_SUCCESS"
+export const GET_DIAGRAM_FAIL = "GET_DIAGRAM_FAIL"

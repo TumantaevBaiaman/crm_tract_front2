@@ -1,0 +1,34 @@
+.bg-status-account-white {
+  /*background-color: #2A3042;*/
+  background-color: #00425A !important;
+}
+
+.bg-status-account-black {
+  background-color: #000000 !important;
+}
+
+.bg-status-account-btn {
+  background: #391a60 !important;
+  color: white !important;;
+}
+
+.text-status-account-black {
+  background: #391a60 !important;
+}
+
+.bg-status-account-white-logo {
+  /*background-color: #2A3042;*/
+  background: #00425A;
+}
+
+.bg-status-account-black-logo {
+  background: #000000;
+}
+
+/*.bg-status-account-black button i, span {*/
+/*  color: #FFF1DC;*/
+/*}*/
+
+/*.bg-status-account-white i, span {*/
+/*  color: white;*/
+/*}*/

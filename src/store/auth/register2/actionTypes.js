@@ -1,0 +1,3 @@
+export const REGISTER_USER_IN_ACCOUNT = "register_user_in_account"
+export const REGISTER_USER_IN_ACCOUNT_SUCCESSFUL = "register_user_in_account_successfull"
+export const REGISTER_USER_IN_ACCOUNT_FAILED = "register_user_in_account_failed"

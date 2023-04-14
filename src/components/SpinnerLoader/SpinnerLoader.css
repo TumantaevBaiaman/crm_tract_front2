@@ -1,0 +1,46 @@
+.loader {
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #3498db;
+  border-radius: 50%;
+  /*width: 30px;*/
+  /*height: 30px;*/
+  animation: spin 1s linear infinite;
+  background-color: rgba(0,0,0,0.4);
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.info_new {
+  display: inline-block; /* Строчно-блочный элемент */
+  position: absolute; /* Относительное позиционирование */
+  }
+.info_new:hover::after {
+  width: 170px;
+  height: auto;
+  content: attr(data-title);
+  position: absolute;
+  left: -130px; right: 0; bottom: 0px;
+  background: white;
+  color: #2c2c2c;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  border-radius: 2px;
+  padding: 10px 10px;
+  //border: 1px solid #333;
+}
