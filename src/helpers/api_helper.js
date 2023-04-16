@@ -7,7 +7,7 @@ import {POST_JWT_REFRESH} from "./url_helper";
 const token = accessToken;
 
 //apply base url for axios
-const API_URL = "https://asdbackapt.cloud";
+const API_URL = "https://backapt.com";
 
 const axiosApi = axios.create({
   baseURL: API_URL,
