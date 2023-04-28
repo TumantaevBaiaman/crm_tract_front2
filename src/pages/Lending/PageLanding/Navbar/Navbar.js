@@ -11,6 +11,8 @@ import {
 import { Link } from "react-router-dom";
 import ScrollspyNav from "./scrollSpy";
 import { useHistory } from 'react-router-dom';
+import logoLight from "assets/images/logoLight.png";
+import logoDark from "assets/images/logoDark.png";
 
 const navItems = [
   { id: 1, idnm: "home", navheading: "Home" },
@@ -43,25 +45,20 @@ const Navbar_Page = props => {
         <Container>
           <Link className="navbar-logo" to="/">
             {props.imglight !== true ? (
-              // <img
-              //   src={logodark}
-              //   alt=""
-              //   height="19"
-              //   className="logo logo-dark"
-              // />
-                <h4>
-                  AutoPRO
-                </h4>
+              <img
+                src={logoDark}
+                alt=""
+                height="23"
+                className="logo logo-dark"
+              />
+
             ) : (
-              // <img
-              //   src={logolight}
-              //   alt=""
-              //   height="19"
-              //   className="logo logo-light"
-              // />
-                <h4 className="text-white">
-                  AutoPRO
-                </h4>
+              <img
+                src={logoLight}
+                alt=""
+                height="23"
+                className="logo logo-light"
+              />
             )}
           </Link>
 

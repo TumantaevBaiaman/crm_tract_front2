@@ -17,7 +17,7 @@ import logoDark from "../../assets/images/logo-dark.png";
 import {getProfile} from "../../store/profile/actions";
 import ModalNewAccount from "../../pages/Dashboard/modal-new-account";
 
-import auto_pro from "../../assets/images/AutoPRO_black.png";
+import auto_pro from "../../assets/images/logoLight.png";
 import PaymentWhiteAccount from "../../pages/Dashboard/payment_w_account";
 import PaymentBlackAccount from "../../pages/Dashboard/payment_b_account";
 
@@ -122,8 +122,9 @@ const Sidebar = props => {
                       <span className="logo-lg" style={{fontSize: "26px", color: "white"}}>
 
                         {/*<img src={logoLightPng} alt="" height="19" />*/}
+                        <img src={auto_pro} alt="" height="27" />
                         {/*<img src={auto_pro} alt="" height="80" />*/}
-                        <strong>AutoPRO</strong>
+                        {/*<strong>AutoPRO</strong>*/}
                       </span>
                       {/*<strong><span style={{fontSize: "26px", color: "white"}}>AutoPRO</span></strong>*/}
                     </Link>
