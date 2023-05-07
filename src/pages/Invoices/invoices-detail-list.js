@@ -26,7 +26,7 @@ import {
 
 import { useSelector, useDispatch } from "react-redux";
 import {useHistory} from "react-router-dom";
-import {getProfile as onGetProfile} from "../../store/profile/actions";
+import {getProfile, getProfile as onGetProfile} from "../../store/profile/actions";
 import {getCustomerDetail as onGetCustomerDetail} from "../../store/customer/actions";
 import {useMediaQuery} from "react-responsive";
 
@@ -37,24 +37,18 @@ const InvoiceDetailList = props => {
   const dispatch = useDispatch();
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   const queryParameters = new URLSearchParams(location.search)
-  const history = useHistory();
+
   if (localStorage.getItem("invoiceId")){
-        localStorage.removeItem("invoiceId");
-      }
+    localStorage.removeItem("invoiceId");
+  }
 
-  const { invoices } = useSelector(state => ({
-    invoices: state.invoices.invoicesMyDay,
-  }))
-
-  let cancel = true
-  let final = true
   const [modal, setModal] = useState(false)
   const { invoiceDetail } = useSelector(state => ({
     invoiceDetail: state.invoices.invoicesMyDay,
   }));
 
-  const { invoiceDetailInfo } = useSelector(state => ({
-    invoiceDetail: state.invoices.invoicesMyDay,
+  const { profile } = useSelector(state => ({
+    profile: state.ProfileUser.profile,
   }));
 
   const { accountDetail } = useSelector(state => {
@@ -122,6 +116,10 @@ const InvoiceDetailList = props => {
     dispatch(onGetCustomerDetail(params.id));
   }, [dispatch]);
 
+  useEffect(() => {
+      dispatch(getProfile());
+  }, [dispatch]);
+
   return (
     <React.Fragment>
       <ModalTask
@@ -132,7 +130,7 @@ const InvoiceDetailList = props => {
       />
       <div className="page-content container align-content-sm-center">
         <Container fluid>
-          {isMobile ? null : <Breadcrumbs title="Invoices" breadcrumbItem="Detail" />}
+          {isMobile ? null : <Breadcrumbs title="AutoPro" breadcrumbItem="Invoice Statement" />}
           {!isEmpty(invoiceDetail) && (
             <Row>
               <Col lg="12">
@@ -141,31 +139,31 @@ const InvoiceDetailList = props => {
                     <Col>
                       <div className="invoice-title text-center">
                         <h1 className="float-center font-size-22">
-                          Invoice
+                          Invoice Statement
                         </h1>
                       </div>
                     </Col>
                     <Row>
                       <Col sm="6">
                         <address className="font-size-14">
-                          <span className="font-size-20"><strong>{accountDetail?.name}</strong></span>
+                          <span className="font-size-20"><strong>{profile?.account?.name}</strong></span>
                           <br/>
-                          <span >{accountDetail?.country}</span>
+                          <span >{profile?.account?.country}</span>
                           <br/>
-                          <span>{accountDetail?.street1}</span>
+                          <span>{profile?.account?.street1}</span>
                           <br/>
-                          <span>{accountDetail?.street2}</span>
+                          <span>{profile?.account?.street2}</span>
                           <br/>
-                          <span>{accountDetail?.phone}</span>
+                          <span>{profile?.account?.phone}</span>
                           <br/>
-                          <span>HST# {accountDetail?.hst}</span>
+                          <span>HST# {profile?.account?.hst}</span>
                           <br/>
                         </address>
                       </Col>
                       <Col sm="6" className="text-sm-end">
                         <address className="font-size-14">
                           <div className="mb-4">
-                            {localStorage.getItem("account_status")==="1" ? <img src={API_URL+accountDetail?.logo} alt="logo" width="200" />: null}
+                            {localStorage.getItem("account_status")==="1" ? <img src={API_URL+profile?.account?.logo} alt="logo" width="200" />: null}
                           </div>
                         </address>
                       </Col>
@@ -241,8 +239,7 @@ const InvoiceDetailList = props => {
                       <Col>
                         <div className="text-sm-end">
                           <strong className="me-sm-5">Sub Total:</strong> <span className="ms-sm-3">${invoiceDetail?.total_invoice_sum}</span><br/>
-                          <strong className="me-sm-5">HST:</strong> <span className="ms-sm-4">${Math.round((invoiceDetail?.gross-invoiceDetail?.total_invoice_sum)*100)/100}</span> <br/>
-                          <strong className="me-sm-5">Total:</strong> <strong><span className="ms-sm-2">${invoiceDetail?.gross}</span></strong>
+                          <strong className="me-sm-5">Total:</strong> <strong><span className="ms-sm-2">${invoiceDetail?.total_invoice_sum}</span></strong>
                         </div>
                       </Col>
                     </Row>

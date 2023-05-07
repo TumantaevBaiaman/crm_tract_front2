@@ -4,20 +4,9 @@ import {
   Container,
   Row,
   Col,
-  Button,
-  Card,
-  CardBody,
   Input,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  Table, Label,
+  Label,
 } from "reactstrap";
-import { Link } from "react-router-dom";
-
-import classNames from "classnames";
-import EcommerceCustomers from "../Ecommerce/EcommerceCustomers";
 
 //import Charts
 import StackedColumnChart from "./StackedColumnChart";
@@ -164,16 +153,16 @@ const Dashboard = props => {
         <Container fluid>
           {/* Render Breadcrumb */}
           <Breadcrumbs
-            title={props.t("Dashboards")}
+            title={props.t("AutoPro")}
             breadcrumbItem={props.t("Dashboard")}
           />
           <Row>
             <Col xl="3">
               <div className="text-muted">
                 <div>
-                  <h4>
-                    This month information
-                  </h4>
+                  <h5>
+                    Information from {get_data?.from_date} <br/> to {get_data?.to_date}
+                  </h5>
                   <br/>
                 </div>
                   <div className="mb-4">
@@ -233,18 +222,6 @@ const Dashboard = props => {
                                     </div>
                                   </div>
                                 </Col>
-                                {/*<Col>*/}
-                                {/*    <div className="d-inline-flex">*/}
-                                {/*    <Label className="form-label align-center mt-2">CloseDate</Label>*/}
-                                {/*        <Input*/}
-                                {/*            type="date"*/}
-                                {/*            className="form-control"*/}
-                                {/*            autoComplete="off"*/}
-                                {/*            value={generatedDate || year+"-"+month+"-"+date}*/}
-                                {/*            onChange={(event) => setGereratedDate(event.target.value)}*/}
-                                {/*        />*/}
-                                {/*    </div>*/}
-                                {/*  </Col>*/}
                                   <Col>
                                     <button className={localStorage.getItem("account_status")==="1" ? "btn btn-success" : "btn bg-status-account-btn"} onClick={onClickRun}>Run</button>
                                   </Col>

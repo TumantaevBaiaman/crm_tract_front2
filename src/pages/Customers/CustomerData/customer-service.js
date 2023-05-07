@@ -157,7 +157,7 @@ const CustomerService = props => {
   }, [dispatch]);
 
   const filterData = customers.filter(customer => {
-    return customer.country.toLowerCase().includes(filterAddress.toLowerCase()) && customer.full_name.toLowerCase().includes(filterName.toLowerCase()) && customer.phone.toLowerCase().includes(filterPhone)
+    return customer?.email.toLowerCase().includes(filterAddress.toLowerCase()) && customer?.full_name.toLowerCase().includes(filterName.toLowerCase()) && customer?.phone.toLowerCase().includes(filterPhone)
   })
 
   useEffect(() => {
@@ -182,7 +182,7 @@ const CustomerService = props => {
         />
         <div className="page-content">
           <Container fluid>
-            {isMobile ? null : <Breadcrumbs title="Ecommerce" breadcrumbItem="Customers"/> }
+            {isMobile ? null : <Breadcrumbs title="AutoPro" breadcrumbItem="Customers Service"/> }
             <Row className="m-auto">
               <Card>
                 <CardTitle className="font-size-12">
@@ -246,7 +246,7 @@ const CustomerService = props => {
                           <Col>
                             <div className="input-group-text">
                               <div>
-                                Customer Address
+                                Customer Email
                               </div>
                               <Input
                                   type="text"

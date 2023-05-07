@@ -12,11 +12,7 @@ const ModalSendDefault = ({ show, onClickTrue, onClickFalse, onCloseClick, email
   }
 
   const onClickSend = () => {
-    if(data===true){
-      onClickTrue()
-    }else{
-      onClickFalse()
-    }
+    onClickFalse()
   }
 
   return (
@@ -41,47 +37,6 @@ const ModalSendDefault = ({ show, onClickTrue, onClickFalse, onCloseClick, email
                   value={email}
                   onChange={setEmail}
                 />
-              </div>
-            </div>
-          </div>
-          <div className="control-group" id="toastTypeGroup">
-            <div className="controls mb-4">
-              <Label>Tax</Label>
-              <div className="hstack gap-2 justify-content-center mb-0">
-                <div className="form-check mb-2">
-                  <input
-                    type="radio"
-                    id="radio1"
-                    name="toastType"
-                    className="form-check-input"
-                    value="success"
-                    onChange={() => onChangeData(true)}
-                    defaultChecked
-                  />
-                  <Label
-                    className="form-check-label"
-                    htmlFor="radio1"
-                  >
-                    Yes
-                  </Label>
-                </div>
-
-                <div className="form-check mb-2">
-                  <input
-                    type="radio"
-                    id="radio2"
-                    name="toastType"
-                    className="form-check-input"
-                    value="info"
-                    onChange={() => onChangeData(false)}
-                  />
-                  <Label
-                    className="form-check-label"
-                    htmlFor="radio2"
-                  >
-                    No
-                  </Label>
-                </div>
               </div>
             </div>
           </div>

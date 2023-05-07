@@ -22,6 +22,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import {useHistory} from "react-router-dom";
 import AccordionContent from "components/Accordion/Accordion";
+import DatePicker from "react-datepicker";
 
 const ReportCrew = props => {
 
@@ -45,6 +46,12 @@ const ReportCrew = props => {
 
   const [invoiceDate, setInvoiceDate] = useState(year+"-"+month+"-"+"01")
   const [generatedDate, setGereratedDate] = useState(year+"-"+month+"-"+date)
+  const [dateData, setDateData] = useState("Range Date")
+  const [selectedMonth, setSelectedMonth] = useState(() => {
+    const defaultDate = new Date();
+    const lastDayOfPrevMonth = new Date(defaultDate.getFullYear(), defaultDate.getMonth()+1, 0);
+    return lastDayOfPrevMonth;
+  });
 
   let get_data = {
     account_id: localStorage.getItem("account_user"),
@@ -66,7 +73,6 @@ const ReportCrew = props => {
     dispatch(onGetReportCrew(get_data))
   }, [dispatch])
 
-  const [dateData, setDateData] = useState("Month")
   const onClickToday = () => {
       setGereratedDate(year+"-"+month+"-"+date)
       setInvoiceDate(year+"-"+month+"-"+date)
@@ -92,6 +98,18 @@ const ReportCrew = props => {
       setInvoiceDate(year+"-"+month+"-"+"01")
       setGereratedDate(year+"-"+month+"-"+date)
       setDateData("Month")
+  }
+
+  const onChangeRangeMonth = (data) => {
+      setSelectedMonth(data)
+      const currentDate = new Date(data);
+      const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+      const monthDate = currentDate.getMonth()+1
+      const yearDate = currentDate.getFullYear()
+      let month_f = ''
+      if (monthDate<10)  {  month_f ="0"+monthDate.toString()} else {  month_f =monthDate.toString()}
+      setInvoiceDate(yearDate+"-"+month_f+"-"+"01")
+      setGereratedDate(yearDate+"-"+month_f+"-"+lastDayOfMonth)
   }
 
 
@@ -123,82 +141,112 @@ const ReportCrew = props => {
 
           <Col xl={12}>
               <Card>
-                <CardBody>
                   <AccordionContent text="open me">
                     <div className="d-sm-flex flex-wrap">
-                      <Col lg={8}>
+                      <Col lg={10}>
                         <div className="position-relative">
                             <div className="search-box me-xxl-2 my-3 my-xxl-0 d-inline-block">
                               <div className="position-relative">
-                                <Row>
-                                    <Col>
-                                        <div className="d-inline-flex ">
-                                            <Label className="form-label align-center mt-2 me-2">InvoiceDate: </Label>
+                                {dateData==="Range Date" ? (
+                                  <Row>
+                                      <Col lg={4}>
+                                          <UncontrolledDropdown>
+                                            <DropdownToggle tag="a" to="#" className="card-drop w-md font-size-12" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i className={"bx bx-filter btn w-lg me-4"+color_btn()}> <strong className="ms-2">{dateData}</strong> </i>
+                                            </DropdownToggle>
+                                            <DropdownMenu>
+                                                <DropdownItem
+                                                    className="btn btn-soft-primary w-lg font-size-12"
+                                                    onClick={() => setDateData("Range Date")}
+                                                >
+                                                    <i className="bx bx-calendar align-middle me-2"/>
+                                                    Range Date
+                                                </DropdownItem>
+                                                <DropdownItem
+                                                    className="btn btn-soft-primary w-lg font-size-12"
+                                                    onClick={() => setDateData("Month")}
+                                                >
+                                                    <i className="bx bx-calendar align-middle me-2"/>
+                                                    Month
+                                                </DropdownItem>
+                                            </DropdownMenu>
+                                          </UncontrolledDropdown>
+                                      </Col>
+                                    <Col lg={4}>
+                                        <div className="d-inline-flex">
+                                            <Label className="form-label align-center mt-2">StartDate  </Label>
                                             <Input
-                                                  type="date"
-                                                  className="form-control"
-                                                  autoComplete="off"
-                                                  value={invoiceDate || year+"-"+month+"-"+"01"}
-                                                  onChange={(event) => setInvoiceDate(event.target.value)}
+                                                type="date"
+                                                className="form-control"
+                                                autoComplete="off"
+                                                value={invoiceDate || year+"-"+month+"-"+"01"}
+                                                onChange={(event) => setInvoiceDate(event.target.value)}
                                             />
                                         </div>
                                     </Col>
-                                    <Col>
-                                        <div className="d-inline-flex ms-sm-5">
-                                            <Label className="form-label align-center mt-2 me-2">GenerateDate: </Label>
+                                    <Col lg={4}>
+                                        <div className="d-inline-flex">
+                                            <Label className="form-label align-center mt-2 ms-sm-4">EndDate  </Label>
                                             <Input
-                                                  type="date"
-                                                  className="form-control"
-                                                  autoComplete="off"
-                                                  value={generatedDate || year+"-"+month+"-"+date}
-                                                  onChange={(event) => setGereratedDate(event.target.value)}
+                                                type="date"
+                                                className="form-control"
+                                                autoComplete="off"
+                                                value={generatedDate || year+"-"+month+"-"+date}
+                                                onChange={(event) => setGereratedDate(event.target.value)}
                                             />
                                         </div>
-                                    </Col>
+                                      </Col>
+                                    </Row>
+                              ): (
+                                  <Row>
+                                      <Col lg={4}>
+                                          <UncontrolledDropdown>
+                                            <DropdownToggle tag="a" to="#" className="card-drop w-md font-size-12" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i className={"bx bx-filter btn w-lg me-4"+color_btn()}> <strong className="ms-2">{dateData}</strong> </i>
+                                            </DropdownToggle>
+                                            <DropdownMenu>
+                                                <DropdownItem
+                                                    className="btn btn-soft-primary w-lg font-size-12"
+                                                    onClick={() => setDateData("Range Date")}
+                                                >
+                                                    <i className="bx bx-calendar align-middle me-2"/>
+                                                    Range Date
+                                                </DropdownItem>
+                                                <DropdownItem
+                                                    className="btn btn-soft-primary w-lg font-size-12"
+                                                    onClick={() => setDateData("Month")}
+                                                >
+                                                    <i className="bx bx-calendar align-middle me-2"/>
+                                                    Month
+                                                </DropdownItem>
+                                            </DropdownMenu>
+                                          </UncontrolledDropdown>
+                                      </Col>
+                                      <Col lg={8}>
+                                          <div className="ms-4">
+                                              <DatePicker
+                                                id="month-picker"
+                                                dateFormat="MM/yyyy"
+                                                className="form-control"
+                                                showMonthYearPicker
+                                                selected={selectedMonth}
+                                                onChange={onChangeRangeMonth}
+                                              />
+                                          </div>
+                                      </Col>
                                   </Row>
+                              )}
                                 </div>
                             </div>
                         </div>
                       </Col>
-                      <Col lg={4} className="float-end">
+                      <Col lg={2} className="float-end">
                         <div className="text-end d-flex">
-                            <UncontrolledDropdown>
-                                <DropdownToggle tag="a" to="#" className="card-drop w-md" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i className={"bx bx-calendar-check btn w-lg me-4"+color_btn()}> <strong className="ms-2">{dateData}</strong> </i>
-                                </DropdownToggle>
-                                <DropdownMenu className="dropdown-menu-end">
-                                    <DropdownItem
-                                        className="btn btn-soft-success w-lg font-size-14"
-                                        // href={"/car-create/"+params.id}
-                                        onClick={onClickToday}
-                                    >
-                                        <i className="bx bx-calendar align-middle me-2"/>
-                                        Today
-                                    </DropdownItem>
-                                    <DropdownItem
-                                        className="btn btn-soft-success w-lg font-size-14"
-                                        // href={"/car-create/"+params.id}
-                                        onClick={onClickWeek}
-                                    >
-                                        <i className="bx bx-calendar align-middle me-2"/>
-                                        Week
-                                    </DropdownItem>
-                                    <DropdownItem
-                                        className="btn btn-soft-success w-lg font-size-14"
-                                        // href={"/car-create/"+params.id}
-                                        onClick={onClickMonth}
-                                    >
-                                        <i className="bx bx-calendar align-middle me-2"/>
-                                        Month
-                                    </DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
                             <button className={"btn w-md form-control"+color_btn()} onClick={onClickRun}>Run</button>
                         </div>
                     </Col>
                     </div>
                   </AccordionContent>
-                </CardBody>
               </Card>
             </Col>
 
@@ -207,7 +255,7 @@ const ReportCrew = props => {
               <div className="table-responsive">
                 <Table className="project-list-table table-nowrap align-middle table-borderless">
                   <thead>
-                    <tr className="bg-success text-white">
+                    <tr className="bg-primary text-white">
                       <th scope="col">
                         Crew Name
                       </th>
@@ -219,13 +267,13 @@ const ReportCrew = props => {
                   <tbody>
                     {map(report_crew?.list_customers, (crew, key) => (
                       <tr key={key} onClick={()=>onClickNext(crew.id)}>
-                        <td>{crew.username}</td>
-                        <td>{crew.invoice_count}</td>
+                        <td>{crew?.username}</td>
+                        <td>{crew?.invoice_count}</td>
                         <td>$ {Math.floor((crew?.total_sum)*100)/100 || 0   }</td>
                         <td>$ {Math.floor((crew?.gross)*100)/100 || 0}</td>
                       </tr>
                     ))}
-                      <tr className="text-success">
+                      <tr className="text-primary">
                         <td><strong className="text-black">Totals</strong></td>
                         <td><strong>{report_crew?.total_count}</strong></td>
                         <td><strong>$ {Math.floor((report_crew?.total_all_sum)*100)/100 || 0}</strong></td>

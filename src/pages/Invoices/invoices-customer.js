@@ -137,11 +137,6 @@ const InvoiceCustomer = props => {
     }
   };
 
-  const onClickExportOne = (data) => {
-    setDataId(data)
-    setModalOne(true)
-  };
-
   const onClickExportOneTrue = (data) => {
     const export_data = {
       "action": "export",
@@ -177,6 +172,11 @@ const InvoiceCustomer = props => {
   const onClickSendList = () => {
     setCustomerDataInfo(invoices[0]?.customer_id?.email)
     setModalListSend(true)
+  };
+
+  const onClickExportOne = (data) => {
+    setDataId(data)
+    onClickExportOneFalse()
   };
 
   const onClickSendOneFalse = (data) => {
@@ -317,6 +317,8 @@ const InvoiceCustomer = props => {
           onClickFalse={onClickSendListFalse}
           dateStart={event => setStartDate2(event.target.value)}
           dateEnd={event => setEndDate2(event.target.value)}
+          dateStartMonth={event => setStartDate2(event)}
+          dateEndMonth={event => setEndDate2(event)}
           onCloseClick={() => setModalListSend(false)}
           email={customerDataInfo}
           setEmail={event => setCustomerDataInfo(event.target.value)}
@@ -330,7 +332,6 @@ const InvoiceCustomer = props => {
           {isMobile ? null : (
               <Col xl={12}>
                 <Card>
-                  <CardBody>
                     <div className="d-sm-flex flex-wrap">
                       <div className="position-relative">
                         <div className="search-box me-xxl-2 my-3 my-xxl-0 d-inline-block">
@@ -455,7 +456,6 @@ const InvoiceCustomer = props => {
                           </div>
                       </div>
                     </div>
-                  </CardBody>
                 </Card>
             </Col>
           )}
@@ -507,9 +507,6 @@ const InvoiceCustomer = props => {
                                               onClick={event => onClickSendOne(item)}
                                           >
                                             <i className="mdi mdi-email-send" id="deletetooltip"/>
-                                            <UncontrolledTooltip placement="top" target="deletetooltip">
-                                              Send
-                                            </UncontrolledTooltip>
                                           </Button>
                                         </li>
 
@@ -520,9 +517,6 @@ const InvoiceCustomer = props => {
                                               onClick={event => onClickExportOne(item.id)}
                                           >
                                               <i className="mdi mdi-file-pdf" id="deletetooltip" />
-                                              <UncontrolledTooltip placement="top" target="deletetooltip">
-                                                  Export
-                                              </UncontrolledTooltip>
                                           </Button>
                                       </li>
 
@@ -532,9 +526,6 @@ const InvoiceCustomer = props => {
                                               className="btn btn-sm btn-soft-primary"
                                           >
                                               <i className="mdi mdi-page-next" id="deletetooltip" />
-                                              <UncontrolledTooltip placement="top" target="deletetooltip">
-                                                  Next
-                                              </UncontrolledTooltip>
                                           </Link>
                                       </li>
 

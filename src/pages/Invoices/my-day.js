@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react"
 import {
-    Card,
-    CardBody, CardTitle,
+    CardTitle,
     Col,
-    Container,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
-    Input, NavItem,
-    Row, Table,
-    UncontrolledDropdown
+    NavItem,
+    Row,
+    Table,
 } from "reactstrap"
 import PropTypes from "prop-types"
 import {Link, useHistory, withRouter} from "react-router-dom"
@@ -25,17 +20,12 @@ import CardInvoice from "./card-invoice"
 import {
     getCustomers as onGetEmployee,
     getCustomersData as onGetCustomers,
-    getInvoiceDetail as onGetInvoiceDetail,
-    getMyDay as onGetMyday,
     invoiceMyDay as onInvoiceMyDay,
-    getInvoices as onGetInvoices, getMyDay as onGetMyDay, getProfile,
+    getProfile,
 } from "store/actions"
 import classNames from "classnames";
-import {use} from "i18next";
 import ListInvoices from "./list-invoice";
 import AccordionContent from "components/Accordion/Accordion"
-import ModalNewAccount from "pages/Dashboard/modal-new-account"
-import {useMediaQuery} from "react-responsive";
 
 const MyDay = props => {
 
@@ -187,7 +177,7 @@ const MyDay = props => {
   return (
       <React.Fragment>
           <div className="page-content" >
-                <Breadcrumbs title="List" breadcrumbItem="My Day" goMenu={true}/>
+                <Breadcrumbs title="AutoPro" breadcrumbItem="My Day" goMenu={true}/>
                 <Col lg={12}>
                     {isMobile ? null : (
                         <CardTitle className="font-size-12">
@@ -203,6 +193,7 @@ const MyDay = props => {
                                               setActivListTrue(false)
                                               setActivCardTrue(true)
                                           }}
+                                          to="#"
                                         >
                                             <i className="mdi mdi-view-grid-outline"/>
                                         </Link>
@@ -216,6 +207,7 @@ const MyDay = props => {
                                                 setActivListTrue(true)
                                                 setActivCardTrue(false)
                                             }}
+                                            to="#"
                                         >
                                             <i className="mdi mdi-format-list-bulleted"/>
                                         </Link>

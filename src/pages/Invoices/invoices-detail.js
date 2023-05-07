@@ -353,7 +353,7 @@ const InvoiceDetail = props => {
                       <div className="float-end block-top d-flex">
                         <UncontrolledDropdown>
                               <DropdownToggle tag="a" to="#" className="card-drop w-md me-2" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i className="bx bx-plus font-size-16 btn btn-success"></i>
+                                <i className="bx bx-news font-size-16 btn btn-success"></i>
                               </DropdownToggle>
                               <DropdownMenu className="dropdown-menu-end">
                                 {cancel &&
@@ -389,7 +389,7 @@ const InvoiceDetail = props => {
                                 <DropdownItem
                                   className="btn btn-soft-warning w-md"
                                     onClick={() => {
-                                      setModal(true)
+                                      onClickExportNoTask()
                                     }}
                                 >
                                     <i className="bx bxs-file-pdf font-size-16 align-middle me-2"/>PDF

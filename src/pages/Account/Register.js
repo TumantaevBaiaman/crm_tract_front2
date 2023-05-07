@@ -94,8 +94,6 @@ const RegisterAccount = props => {
       dispatch(getProfile());
   }, [dispatch]);
 
-    console.log(profile)
-
   if (localStorage.getItem("account_id")===null && profile?.account?.id){
       localStorage.setItem("account_id", profile?.account?.id)
   }

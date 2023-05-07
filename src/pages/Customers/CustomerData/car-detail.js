@@ -84,13 +84,8 @@ const CarDetail = props => {
       image: (car && car.image) || '',
     },
     validationSchema: Yup.object({
-      description: Yup.string().required("Please Enter Description"),
-      vin: Yup.string().required("Please Enter VIN Number Car"),
-      model: Yup.string().required("Please Enter Model"),
+      vin: Yup.string().min(8, 'VIN number should be at least 8 characters long').required("Please Enter VIN Number Car"),
       make: Yup.string().required("Please Enter Make"),
-      stock: Yup.string().required("Please Enter Stock"),
-      po: Yup.string().required("Please Enter PO Number"),
-      image: Yup.string().required("Please Image Car"),
     }),
     onSubmit: (values) => {
         let data_form = new FormData();
@@ -201,24 +196,18 @@ const CarDetail = props => {
                                     <div data-repeater-item className="outer">
                                         <FormGroup className="mb-4" row>
                                           <Label
-                                            htmlFor="model"
+                                            htmlFor="stock"
                                             className="col-form-label col-lg-2"
-                                            >Model</Label>
+                                            >Stock</Label>
                                             <Col lg="10">
                                               <Input
-                                                name="model"
+                                                name="stock"
                                                 type="text"
-                                                placeholder="Enter model"
+                                                placeholder="Enter Stock"
                                                 onChange={validation.handleChange}
                                                 onBlur={validation.handleBlur}
-                                                value={validation.values.model || ""}
-                                                invalid={
-                                                  validation.touched.model && validation.errors.model ? true : false
-                                                }
+                                                value={validation.values.stock || ""}
                                               />
-                                              {validation.touched.model && validation.errors.model ? (
-                                                <FormFeedback type="invalid">{validation.errors.model}</FormFeedback>
-                                              ) : null}
                                             </Col>
                                         </FormGroup>
                                     </div>
@@ -255,24 +244,18 @@ const CarDetail = props => {
                                     <div data-repeater-item className="outer">
                                         <FormGroup className="mb-4" row>
                                           <Label
-                                            htmlFor="stock"
+                                            htmlFor="model"
                                             className="col-form-label col-lg-2"
-                                            >Stock</Label>
+                                            >Model</Label>
                                             <Col lg="10">
                                               <Input
-                                                name="stock"
+                                                name="model"
                                                 type="text"
-                                                placeholder="Enter Stock"
+                                                placeholder="Enter model"
                                                 onChange={validation.handleChange}
                                                 onBlur={validation.handleBlur}
-                                                value={validation.values.stock || ""}
-                                                invalid={
-                                                  validation.touched.stock && validation.errors.stock ? true : false
-                                                }
+                                                value={validation.values.model || ""}
                                               />
-                                              {validation.touched.stock && validation.errors.stock ? (
-                                                <FormFeedback type="invalid">{validation.errors.stock}</FormFeedback>
-                                              ) : null}
                                             </Col>
                                         </FormGroup>
                                     </div>
@@ -293,13 +276,7 @@ const CarDetail = props => {
                                                 onChange={validation.handleChange}
                                                 onBlur={validation.handleBlur}
                                                 value={validation.values.po || ""}
-                                                invalid={
-                                                  validation.touched.po && validation.errors.po ? true : false
-                                                }
                                               />
-                                              {validation.touched.po && validation.errors.po ? (
-                                                <FormFeedback type="invalid">{validation.errors.po}</FormFeedback>
-                                              ) : null}
                                             </Col>
                                         </FormGroup>
                                     </div>

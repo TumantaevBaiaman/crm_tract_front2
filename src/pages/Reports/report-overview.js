@@ -27,6 +27,8 @@ import ge from "react-datepicker";
 import AccordionContent from "components/Accordion/Accordion";
 import ModalTask from "../Invoices/ModalTask";
 import toastr from "toastr";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 
 const ReportOverview = props => {
 
@@ -84,6 +86,12 @@ const ReportOverview = props => {
   const [invoiceDate, setInvoiceDate] = useState('')
   const [generatedDate, setGereratedDate] = useState('')
   const [filter, setFilter] = useState("Customer")
+  const [dateData, setDateData] = useState("Range Date")
+  const [selectedMonth, setSelectedMonth] = useState(() => {
+    const defaultDate = new Date();
+    const lastDayOfPrevMonth = new Date(defaultDate.getFullYear(), defaultDate.getMonth()+1, 0);
+    return lastDayOfPrevMonth;
+  });
   const { invoices } = useSelector(state => ({
     invoices: state.invoices.myDay,
   }))
@@ -224,6 +232,18 @@ const ReportOverview = props => {
     setModal(false)
   };
 
+  const onChangeRangeMonth = (data) => {
+      setSelectedMonth(data)
+      const currentDate = new Date(data);
+      const lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+      const monthDate = currentDate.getMonth()+1
+      const yearDate = currentDate.getFullYear()
+      let month_f = ''
+      if (monthDate<10)  {  month_f ="0"+monthDate.toString()} else {  month_f =monthDate.toString()}
+      setStartDate(yearDate+"-"+month_f+"-"+"01")
+      setEndDate(yearDate+"-"+month_f+"-"+lastDayOfMonth)
+  }
+
   const color_btn = () => {
       if (localStorage.getItem("account_status")==="1"){
           return " btn-success"
@@ -243,43 +263,106 @@ const ReportOverview = props => {
       />
       <div className="page-content">
         <Container fluid>
-          <Breadcrumbs title="AutoPro" breadcrumbItem="Invoices Customer" />
-
+          <Breadcrumbs title="AutoPro" breadcrumbItem="Invoice Report Overview" />
           <AccordionContent text="open">
+          <br/>
           <Col xl={12}>
               <Card>
-                <CardBody>
                   <div className="d-sm-flex flex-wrap">
                     <Col lg={6}>
                         <div className="position-relative">
                             <div className="search-box my-3 my-xxl-0 d-inline-block">
                               <div className="position-relative">
-                                  <Row>
-                                    <Col lg={6}>
-                                        <div className="input-group-text">
-                                            <Label className="form-label align-center mt-2">InvoiceDate </Label>
-                                            <Input
-                                                type="date"
-                                                className="form-control"
-                                                autoComplete="off"
-                                                value={startDate || year+"-"+month+"-"+"01"}
-                                                onChange={(event) => setStartDate(event.target.value)}
-                                            />
-                                        </div>
-                                    </Col>
-                                    <Col lg={6}>
-                                        <div className="input-group-text">
-                                            <Label className="form-label align-center mt-2">GenerateDate </Label>
-                                            <Input
-                                                type="date"
-                                                className="form-control"
-                                                autoComplete="off"
-                                                value={endDate || year+"-"+month+"-"+date}
-                                                onChange={(event) => setEndDate(event.target.value)}
-                                            />
-                                        </div>
-                                      </Col>
-                                    </Row>
+                                  {dateData==="Range Date" ? (
+                                      <Row>
+                                          <Col lg={4}>
+                                              <UncontrolledDropdown>
+                                                <DropdownToggle tag="a" to="#" className="card-drop w-md font-size-12" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i className={"bx bx-filter btn w-lg me-4"+color_btn()}> <strong className="ms-2">{dateData}</strong> </i>
+                                                </DropdownToggle>
+                                                <DropdownMenu>
+                                                    <DropdownItem
+                                                        className="btn btn-soft-primary w-lg font-size-12"
+                                                        onClick={() => setDateData("Range Date")}
+                                                    >
+                                                        <i className="bx bx-calendar align-middle me-2"/>
+                                                        Range Date
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                        className="btn btn-soft-primary w-lg font-size-12"
+                                                        onClick={() => setDateData("Month")}
+                                                    >
+                                                        <i className="bx bx-calendar align-middle me-2"/>
+                                                        Month
+                                                    </DropdownItem>
+                                                </DropdownMenu>
+                                              </UncontrolledDropdown>
+                                          </Col>
+                                        <Col lg={4}>
+                                            <div className="d-inline-flex">
+                                                <Label className="form-label align-center mt-2">StartDate  </Label>
+                                                <Input
+                                                    type="date"
+                                                    className="form-control"
+                                                    autoComplete="off"
+                                                    value={startDate || year+"-"+month+"-"+"01"}
+                                                    onChange={(event) => setStartDate(event.target.value)}
+                                                />
+                                            </div>
+                                        </Col>
+                                        <Col lg={4}>
+                                            <div className="d-inline-flex">
+                                                <Label className="form-label align-center mt-2 ms-sm-4">EndDate  </Label>
+                                                <Input
+                                                    type="date"
+                                                    className="form-control"
+                                                    autoComplete="off"
+                                                    value={endDate || year+"-"+month+"-"+date}
+                                                    onChange={(event) => setEndDate(event.target.value)}
+                                                />
+                                            </div>
+                                          </Col>
+                                        </Row>
+                                  ): (
+                                      <Row>
+                                          <Col lg={4}>
+                                              <UncontrolledDropdown>
+                                                <DropdownToggle tag="a" to="#" className="card-drop w-md font-size-12" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i className={"bx bx-filter btn w-lg me-4"+color_btn()}> <strong className="ms-2">{dateData}</strong> </i>
+                                                </DropdownToggle>
+                                                <DropdownMenu>
+                                                    <DropdownItem
+                                                        className="btn btn-soft-primary w-lg font-size-12"
+                                                        onClick={() => setDateData("Range Date")}
+                                                    >
+                                                        <i className="bx bx-calendar align-middle me-2"/>
+                                                        Range Date
+                                                    </DropdownItem>
+                                                    <DropdownItem
+                                                        className="btn btn-soft-primary w-lg font-size-12"
+                                                        onClick={() => setDateData("Month")}
+                                                    >
+                                                        <i className="bx bx-calendar align-middle me-2"/>
+                                                        Month
+                                                    </DropdownItem>
+                                                </DropdownMenu>
+                                              </UncontrolledDropdown>
+                                          </Col>
+                                          <Col lg={8}>
+                                              <div className="ms-4">
+                                                  <DatePicker
+                                                    id="month-picker"
+                                                    dateFormat="MM/yyyy"
+                                                    className="form-control"
+                                                    showMonthYearPicker
+                                                    selected={selectedMonth}
+                                                    onChange={onChangeRangeMonth}
+                                                  />
+                                              </div>
+                                          </Col>
+                                      </Row>
+                                  )}
+
                                 </div>
                             </div>
                         </div>
@@ -287,7 +370,7 @@ const ReportOverview = props => {
                       <Col lg={6}>
                           <div className="position-relative text-end">
                             <div className="me-xxl-2 my-3 my-xxl-0 d-inline-block">
-                              <div className="position-relative w-100 input-group-text">
+                              <div className="position-relative w-100 input-group">
                                 <Row>
                                   <Col>
                                   <UncontrolledDropdown>
@@ -313,7 +396,7 @@ const ReportOverview = props => {
                                                     }else {
                                                         setDataCustomer('')}
                                                 })}
-                                                style={{width: "250px"}}
+                                                style={{width: "230px"}}
                                             >
                                                 <option>Customer</option>
                                                     {
@@ -325,8 +408,8 @@ const ReportOverview = props => {
                                             </select> : null
                                         }
                                         {invoiceNumberActiv ?
-                                            <div className="w-100" style={{display: "flex", width: "250px"}}>
-                                                <Input type="text" className="w-lg w-80" placeholder="Enter Invoice Number" value={invoiceNumber} onChange={event => onClickNumber(event.target.value)} style={{width: "220px"}}/>
+                                            <div className="w-100" style={{display: "flex", width: "230px"}}>
+                                                <Input type="text" className="w-lg w-80" placeholder="Enter Invoice Number" value={invoiceNumber} onChange={event => onClickNumber(event.target.value)} style={{width: "200px"}}/>
                                                 <button className="btn btn-danger w-20 ms-1" onClick={() => onClickNumber("")}><i className="bx bx-x"/></button>
                                             </div>
                                             : null
@@ -341,7 +424,7 @@ const ReportOverview = props => {
                                                           setDataEmployee('')
                                                       }
                                                   })}
-                                                  style={{width: "250px"}}
+                                                  style={{width: "230px"}}
                                             >
                                                 <option>Employee</option>
                                                   {employee.map(option => (
@@ -352,14 +435,14 @@ const ReportOverview = props => {
                                             </select> : null
                                         }
                                         {generatedDateActiv ?
-                                            <div className="w-100" style={{display: "flex", width: "250px"}}>
-                                                <Input type="date" className="form-control w-lg " value={generatedDate} style={{width: "220px"}} onChange={event => onClickGDate(event.target.value)}/>
+                                            <div className="w-100" style={{display: "flex", width: "230px"}}>
+                                                <Input type="date" className="form-control w-lg " value={generatedDate} style={{width: "200px"}} onChange={event => onClickGDate(event.target.value)}/>
                                                 <button className="btn btn-danger w-20 ms-1" onClick={() => onClickGDate("")}><i className="bx bx-x"/></button>
                                             </div>: null
                                         }
                                         {invoiceDateActiv ?
-                                            <div className="w-100" style={{display: "flex", width: "250px"}}>
-                                                <Input type="date" className="form-control w-lg" value={invoiceDate} style={{width: "220px"}} onChange={event => onClickIDate(event.target.value)}/>
+                                            <div className="w-100" style={{display: "flex", width: "230px"}}>
+                                                <Input type="date" className="form-control w-lg" value={invoiceDate} style={{width: "200px"}} onChange={event => onClickIDate(event.target.value)}/>
                                                 <button className="btn btn-danger w-20 ms-1" onClick={() => onClickIDate("")}><i className="bx bx-x"/></button>
                                             </div>: null
                                         }
@@ -383,7 +466,6 @@ const ReportOverview = props => {
                           </div>
                       </Col>
                   </div>
-                </CardBody>
               </Card>
             </Col>
           </AccordionContent>
@@ -396,7 +478,7 @@ const ReportOverview = props => {
                       {map(Array.from(invoices).slice(0,-1), (invoice, key) => (
                         <Table key={key} className="project-list-table table-nowrap align-middle table-borderless">
                           <thead>
-                            <tr className="bg-success text-white">
+                            <tr className="bg-primary text-white">
                               <th scope="col" style={{width: "200px"}}>
                                   {invoice?.customer_name}
                               </th>
@@ -413,8 +495,8 @@ const ReportOverview = props => {
                               <td></td>
                               <td>{task?.crew_id.username}</td>
                               <td>{task?.number}</td>
-                              <td>{task?.finished_at}</td>
-                              <td>{task?.start_at}</td>
+                              <td>{task?.finished_at.substr(0,10)}</td>
+                              <td>{task?.start_at.substr(0,10)}</td>
                               <td>$ {task?.total_sum}</td>
                             </tr>
                             ))}
@@ -424,7 +506,7 @@ const ReportOverview = props => {
                               <td></td>
                               <td></td>
                                 <td><strong>Total</strong></td>
-                                <td><strong className="text-success">$ {invoice.total_sum_invoice}</strong></td>
+                                <td><strong className="text-primary">$ {invoice.total_sum_invoice}</strong></td>
                             </tr>
                           </tbody>
                         </Table>

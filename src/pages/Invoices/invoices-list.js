@@ -151,6 +151,7 @@ const InvoicesList = props => {
                                               setActivListTrue(false)
                                               setActivCardTrue(true)
                                           }}
+                                          to="#"
                                         >
                                             <i className="mdi mdi-view-grid-outline"/>
                                         </Link>
@@ -164,6 +165,7 @@ const InvoicesList = props => {
                                                 setActivListTrue(true)
                                                 setActivCardTrue(false)
                                             }}
+                                            to="#"
                                         >
                                             <i className="mdi mdi-format-list-bulleted"/>
                                         </Link>

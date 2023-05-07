@@ -13,7 +13,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { Link } from "react-router-dom";
 
-import logoImg from "../../assets/images/logo.svg";
+import auto_pro from "../../assets/images/logoLogin.png";
 import {useHistory} from "react-router-dom";
 import ModalLogin from "../Dashboard/modal-login";
 
@@ -82,9 +82,9 @@ const Register = props => {
               <Card className="overflow-hidden">
                 <div className=" bg-soft">
                   <Row>
-                    {/*<Col className="col-12 align-self-senter">*/}
-                    {/*  <img src={profile} alt="" className="img-fluid h-100" />*/}
-                    {/*</Col>*/}
+                    <Col className="col-12 align-self-center">
+                      <img src={auto_pro} alt="" className="img-fluid h-50" />
+                    </Col>
                     <Col xs={12}>
                       <div className="p-4 text-center">
                         <h5 className="font-size-22">Welcome to AutoPro</h5>

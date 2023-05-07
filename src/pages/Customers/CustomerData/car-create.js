@@ -55,21 +55,12 @@ const CreateCar = props => {
       enableReinitialize: true,
 
       initialValues: {
-          // description: formDataCar.description,
           vin: formDataCar.vin,
-          model: formDataCar.model,
           make: formDataCar.make,
-          stock: formDataCar.stock,
-          po: formDataCar.po,
-          // image: values.image.name,
       },
       validationSchema: Yup.object({
-        // description: Yup.string().required("Please Enter Description"),
-        vin: Yup.string().required("Please Enter VIN Number Car"),
-        model: Yup.string().required("Please Enter Model"),
+        vin: Yup.string().min(8, 'VIN number should be at least 8 characters long').required("Please Enter VIN Number Car"),
         make: Yup.string().required("Please Enter Make"),
-        stock: Yup.string().required("Please Enter Stock"),
-        po: Yup.string().required("Please Enter PO Number"),
       }),
       onSubmit: (value) => {
           let data_form = new FormData();
@@ -82,7 +73,9 @@ const CreateCar = props => {
           data_form.append("model", value.model);
           data_form.append("make", value.make);
           data_form.append("po", value.po);
-          data_form.append('image', image, image.name)
+          if (image!=="") {
+              data_form.append('image', image, image.name)
+          }
           dispatch(onAddNewCar(data_form, history))
       }
     });
@@ -152,49 +145,15 @@ const CreateCar = props => {
                                             >Stock</Label>
                                             <Col lg="10">
                                                 <div className="input-group">
-                                              <Input
-                                                name="stock"
-                                                type="text"
-                                                placeholder="Enter stock"
-                                                onChange={validation.handleChange}
-                                                onBlur={validation.handleBlur}
-                                                defaultValue={formDataCar.stock}
-                                                invalid={
-                                                  validation.touched.stock && validation.errors.stock ? true : false
-                                                }
-                                              />
-                                              {validation.touched.stock && validation.errors.stock ? (
-                                                <FormFeedback type="invalid">{validation.errors.stock}</FormFeedback>
-                                              ) : <button className="btn btn-success info_new" id="inputGroupFileAddon03" data-title="Need stock car to register"><i className="mdi mdi-alert-circle-outline"></i></button>}
-                                                </div>
-                                            </Col>
-                                        </FormGroup>
-                                    </div>
-                                </div>
-
-                                <div data-repeater-list="outer-group" className="outer">
-                                    <div data-repeater-item className="outer">
-                                        <FormGroup className="mb-4" row>
-                                          <Label
-                                            htmlFor="model"
-                                            className="col-form-label col-lg-2"
-                                            >Model</Label>
-                                            <Col lg="10">
-                                                <div className="input-group">
-                                              <Input
-                                                name="model"
-                                                type="text"
-                                                placeholder="Enter model"
-                                                onChange={validation.handleChange}
-                                                onBlur={validation.handleBlur}
-                                                defaultValue={formDataCar.model}
-                                                invalid={
-                                                  validation.touched.model && validation.errors.model ? true : false
-                                                }
-                                              />
-                                              {validation.touched.model && validation.errors.model ? (
-                                                <FormFeedback type="invalid">{validation.errors.model}</FormFeedback>
-                                              ) : <button className="btn btn-success info_new" id="inputGroupFileAddon03" data-title="Need model car to register"><i className="mdi mdi-alert-circle-outline"></i></button>}
+                                                  <Input
+                                                    name="stock"
+                                                    type="text"
+                                                    placeholder="Enter stock"
+                                                    onChange={validation.handleChange}
+                                                    onBlur={validation.handleBlur}
+                                                    defaultValue={formDataCar.stock}
+                                                  />
+                                                  <button className="btn btn-success info_new" id="inputGroupFileAddon03" data-title="Need stock car to register"><i className="mdi mdi-alert-circle-outline"></i></button>
                                                 </div>
                                             </Col>
                                         </FormGroup>
@@ -234,59 +193,49 @@ const CreateCar = props => {
                                     <div data-repeater-item className="outer">
                                         <FormGroup className="mb-4" row>
                                           <Label
-                                            htmlFor="po"
+                                            htmlFor="model"
                                             className="col-form-label col-lg-2"
-                                            >PO Nuber</Label>
+                                            >Model</Label>
                                             <Col lg="10">
                                                 <div className="input-group">
-                                              <Input
-                                                name="po"
-                                                type="text"
-                                                placeholder="Enter PO Number"
-                                                onChange={validation.handleChange}
-                                                onBlur={validation.handleBlur}
-                                                defaultValue={formDataCar.po}
-                                                invalid={
-                                                  validation.touched.po && validation.errors.po ? true : false
-                                                }
-                                              />
-                                              {validation.touched.po && validation.errors.po ? (
-                                                <FormFeedback type="invalid">{validation.errors.po}</FormFeedback>
-                                              ) : <button className="btn btn-success info_new" id="inputGroupFileAddon03" data-title="Need make car to register"><i className="mdi mdi-alert-circle-outline"></i></button>}
+                                                  <Input
+                                                    name="model"
+                                                    type="text"
+                                                    placeholder="Enter model"
+                                                    onChange={validation.handleChange}
+                                                    onBlur={validation.handleBlur}
+                                                    defaultValue={formDataCar.model}
+                                                  />
+                                                  <button className="btn btn-success info_new" id="inputGroupFileAddon03" data-title="Need model car to register"><i className="mdi mdi-alert-circle-outline"></i></button>
                                                 </div>
                                             </Col>
                                         </FormGroup>
                                     </div>
                                 </div>
 
-                                {/*<div data-repeater-list="outer-group" className="outer">*/}
-                                {/*    <div data-repeater-item className="outer">*/}
-                                {/*        <FormGroup className="mb-4" row>*/}
-                                {/*          <Label*/}
-                                {/*            htmlFor="description"*/}
-                                {/*            className="col-form-label col-lg-2"*/}
-                                {/*            >Description</Label>*/}
-                                {/*            <Col lg="10">*/}
-                                {/*                <div className="input-group">*/}
-                                {/*              <Input*/}
-                                {/*                name="description"*/}
-                                {/*                type="textarea"*/}
-                                {/*                placeholder="Enter description"*/}
-                                {/*                onChange={validation.handleChange}*/}
-                                {/*                onBlur={validation.handleBlur}*/}
-                                {/*                defaultValue={formDataCar.description}*/}
-                                {/*                invalid={*/}
-                                {/*                  validation.touched.description && validation.errors.description ? true : false*/}
-                                {/*                }*/}
-                                {/*              />*/}
-                                {/*              {validation.touched.description && validation.errors.description ? (*/}
-                                {/*                <FormFeedback type="invalid">{validation.errors.description}</FormFeedback>*/}
-                                {/*              ) : <button className="btn btn-success info_new" id="inputGroupFileAddon03" data-title="Need an description to register"><i className="mdi mdi-alert-circle-outline"></i></button>}*/}
-                                {/*                </div>*/}
-                                {/*            </Col>*/}
-                                {/*        </FormGroup>*/}
-                                {/*    </div>*/}
-                                {/*</div>*/}
+                                <div data-repeater-list="outer-group" className="outer">
+                                    <div data-repeater-item className="outer">
+                                        <FormGroup className="mb-4" row>
+                                          <Label
+                                            htmlFor="po"
+                                            className="col-form-label col-lg-2"
+                                            >PO Number</Label>
+                                            <Col lg="10">
+                                                <div className="input-group">
+                                                  <Input
+                                                    name="po"
+                                                    type="text"
+                                                    placeholder="Enter PO Number"
+                                                    onChange={validation.handleChange}
+                                                    onBlur={validation.handleBlur}
+                                                    defaultValue={formDataCar.po}
+                                                  />
+                                                <button className="btn btn-success info_new" id="inputGroupFileAddon03" data-title="Need make car to register"><i className="mdi mdi-alert-circle-outline"></i></button>
+                                                </div>
+                                            </Col>
+                                        </FormGroup>
+                                    </div>
+                                </div>
 
                                 <div data-repeater-list="outer-group" className="outer">
                                     <div data-repeater-item className="outer">
@@ -297,41 +246,18 @@ const CreateCar = props => {
                                             >Image</Label>
                                             <Col lg="10">
                                                 <div className="input-group">
-                                              <Input
-                                                name="image"
-                                                type="file"
-                                                accept="image/png, image/jpg"
-                                                placeholder="Image car"
-                                                className="form-control"
-                                                onChange={handleImageChange}
-                                                onBlur={validation.handleBlur}
-                                                required
-                                                // defaultValue={values.image.name}
-                                                // invalid={
-                                                //   validation.touched.image && validation.errors.image ? true : false
-                                                // }
-                                              />
+                                                  <Input
+                                                    name="image"
+                                                    type="file"
+                                                    accept="image/png, image/jpg"
+                                                    placeholder="Image car"
+                                                    className="form-control"
+                                                    onChange={handleImageChange}
+                                                    onBlur={validation.handleBlur}
+                                                  />
                                                     <button className="btn btn-success info_new" id="inputGroupFileAddon03" data-title="Need image car to register"><i className="mdi mdi-alert-circle-outline"></i></button>
                                                 </div>
-                                              {/*{validation.touched.image && validation.errors.image ? (*/}
-                                              {/*  <FormFeedback type="invalid">{validation.errors.image}</FormFeedback>*/}
-                                              {/*) : null}*/}
                                             </Col>
-                                            {/*<Card*/}
-                                            {/*    className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"*/}
-                                            {/*    key={"-file"}*/}
-                                            {/*  >*/}
-                                            {/*    <div className="p-2">*/}
-                                            {/*      <Row className="align-items-center">*/}
-                                            {/*        <Col>*/}
-                                            {/*            {formDataCar.image.name}*/}
-                                            {/*          <p className="mb-0">*/}
-                                            {/*            <strong>{formDataCar.image.size}</strong>*/}
-                                            {/*          </p>*/}
-                                            {/*        </Col>*/}
-                                            {/*      </Row>*/}
-                                            {/*    </div>*/}
-                                            {/*  </Card>*/}
                                         </FormGroup>
                                     </div>
                                 </div>
