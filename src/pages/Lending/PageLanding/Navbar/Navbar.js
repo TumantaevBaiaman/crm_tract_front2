@@ -23,17 +23,28 @@ const navItems = [
 const Navbar_Page = props => {
   const [isOpenMenu, setisOpenMenu] = useState(false);
   const history = useHistory();
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   let TargetId = navItems.map(item => {
     return item.idnm;
   });
 
+  function tToggle() {
+    var body = document.body;
+    if (window.screen.width <= 998) {
+      body.classList.add("sidebar-enable");
+    } else {
+      body.classList.toggle("vertical-collpsed");
+      body.classList.toggle("sidebar-enable");
+    }
+  }
+
   const onClickNext = () => {
-    if (localStorage.getItem('status_user')==="employee"){
-      history.push('/my-day')
+    if (isMobile){
+      history.push('/mobile-menu')
     }
     else {
-      history.push('/dashboard')
+      history.push('/my-day')
     }
   }
 
@@ -66,7 +77,7 @@ const Navbar_Page = props => {
             className="p-0"
             onClick={() => setisOpenMenu(!isOpenMenu)}
           >
-            <i className="fa fa-fw fa-bars" />
+            <i className="fa fa-fw fa-bars"/>
           </NavbarToggler>
 
           <Collapse id="topnav-menu-content" isOpen={isOpenMenu} navbar>

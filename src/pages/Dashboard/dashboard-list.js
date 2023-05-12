@@ -175,7 +175,7 @@ const MyDayDashboard = props => {
                                     </DropdownToggle>
                                     <DropdownMenu className="dropdown-menu-end">
                                         <DropdownItem
-                                            className="btn btn-soft-success w-lg font-size-14"
+                                            className="btn btn-soft-primary w-lg font-size-14"
                                             onClick={() => {
                                                 setSearchValue("Range")
                                                 setDataEmployee(-1)
@@ -186,7 +186,7 @@ const MyDayDashboard = props => {
                                             Date Range
                                         </DropdownItem>
                                         <DropdownItem
-                                            className="btn btn-soft-success w-lg font-size-14"
+                                            className="btn btn-soft-primary w-lg font-size-14"
                                             onClick={() => {
                                                 setSearchValue("Customer")
                                                 setDataEmployee(-1)
@@ -196,7 +196,7 @@ const MyDayDashboard = props => {
                                             Customer
                                         </DropdownItem>
                                         <DropdownItem
-                                            className="btn btn-soft-success w-lg font-size-14"
+                                            className="btn btn-soft-primary w-lg font-size-14"
                                             onClick={() => {
                                                 setSearchValue("Crew")
                                                 setDataCustomer(-1)
@@ -284,7 +284,7 @@ const MyDayDashboard = props => {
                                     </DropdownToggle>
                                     <DropdownMenu className="dropdown-menu-end">
                                         <DropdownItem
-                                            className="btn btn-soft-success w-lg font-size-14"
+                                            className="btn btn-soft-primary w-lg font-size-14"
                                             // href={"/car-create/"+params.id}
                                             onClick={onClickToday}
                                         >
@@ -292,7 +292,7 @@ const MyDayDashboard = props => {
                                             Today
                                         </DropdownItem>
                                         <DropdownItem
-                                            className="btn btn-soft-success w-lg font-size-14"
+                                            className="btn btn-soft-primary w-lg font-size-14"
                                             // href={"/car-create/"+params.id}
                                             onClick={onClickWeek}
                                         >
@@ -300,7 +300,7 @@ const MyDayDashboard = props => {
                                             Week
                                         </DropdownItem>
                                         <DropdownItem
-                                            className="btn btn-soft-success w-lg font-size-14"
+                                            className="btn btn-soft-primary w-lg font-size-14"
                                             // href={"/car-create/"+params.id}
                                             onClick={onClickMonth}
                                         >

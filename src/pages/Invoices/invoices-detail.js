@@ -26,6 +26,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import {useHistory} from "react-router-dom";
 import ModalSendDefault from "./SendDefault";
+import ModalSave from "./ModalSave";
 import toastr from "toastr";
 import {useMediaQuery} from "react-responsive";
 import {updateCustomersData as onUpdateCustomer} from "../../store/customer/actions";
@@ -46,6 +47,10 @@ const InvoiceDetail = props => {
   const [modal, setModal] = useState(false)
   const [modalOneSend, setModalOneSend] = useState(false)
   const [customerDataInfo, setCustomerDataInfo] = useState("")
+
+  const [emailError, setEmailError] = useState(false)
+  const [emailModal, setEmailModal] = useState(false)
+
   const { invoiceDetail } = useSelector(state => ({
     invoiceDetail: state.invoices.invoiceDetail.invoice,
   }));
@@ -57,19 +62,6 @@ const InvoiceDetail = props => {
   const {
     match: { params },
   } = props;
-
-  const onClickExportNoTask = () => {
-    const export_data = {
-      "action": "export",
-      "account_id": localStorage.getItem("account_user"),
-      "invoice_id": params.id,
-      "tax": null,
-      "send": null
-    }
-    toastr.info("wait a little")
-    dispatch(onExportInvoice(export_data))
-    setModal(false)
-  };
 
   const onClickExportTask = () => {
     const export_data = {
@@ -159,10 +151,6 @@ const InvoiceDetail = props => {
     setModalOneSend(false)
   };
 
-  const onClickBack = () => {
-    history.goBack();
-  }
-
   const updateCustomer = () => {
     const updateCustomer = {
       id: invoiceDetail?.customer_id?.id,
@@ -176,16 +164,14 @@ const InvoiceDetail = props => {
       phone2: invoiceDetail?.customer_id?.phone2 || ""
     };
     dispatch(onUpdateCustomer(updateCustomer));
+    dispatch(onGetInvoiceDetail(params?.id));
+    onClickSendOneFalse()
+    setModalOneSend(false)
+    setEmailModal(false)
   }
 
   return (
     <React.Fragment>
-      <ModalTask
-          show={modal}
-          onClickTrue={onClickExportTask}
-          onClickFalse={onClickExportNoTask}
-          onCloseClick={() => setModal(false)}
-      />
       <ModalSendDefault
           show={modalOneSend}
           onClickTrue={onClickSendOneTrue}
@@ -194,6 +180,13 @@ const InvoiceDetail = props => {
           email={customerDataInfo}
           setEmail={event => setCustomerDataInfo(event.target.value)}
           update={updateCustomer}
+          startEmail={invoiceDetail?.customer_id?.email}
+          modalSave={() => setEmailModal(true)}
+      />
+      <ModalSave
+          show={emailModal}
+          update={updateCustomer}
+          onCloseClick={() => setEmailModal(false)}
       />
       <div className="page-content container align-content-sm-center">
         <Container fluid>
@@ -233,6 +226,7 @@ const InvoiceDetail = props => {
                           </address>
                           <address className="font-size-14">
                             <div className="mb-4 text-end">
+                              {localStorage.getItem("account_status")==="1" ? <img src={API_URL+accountDetail?.logo} alt="logo" width="200" /> : null}
                             </div>
                           </address>
                         </div>
@@ -269,7 +263,7 @@ const InvoiceDetail = props => {
                       <Col sm="6">
                         <div className="text-sm-end">
                           <strong className="me-sm-5">Invoice Number:</strong> <strong><span className="ms-sm-3">{invoiceDetail?.number}</span></strong><br/>
-                          <strong className="me-sm-5">PO Number:</strong> <strong><span className="ms-sm-4">{invoiceDetail?.car_id?.po}</span></strong>
+                          <strong className="me-sm-5">PO Number:</strong> <strong><span className="ms-sm-4">{invoiceDetail?.car_id?.po !== "undefined" ? invoiceDetail?.car_id?.po : null}</span></strong>
                         </div>
                         <br/>
                         <div className="text-sm-end">
@@ -282,7 +276,7 @@ const InvoiceDetail = props => {
                     <Row>
                       <Col sm="6">
                         <div className="font-size-20">
-                          {invoiceDetail?.car_id?.model} (Stock# {invoiceDetail?.car_id?.stock}, VIN {invoiceDetail?.car_id?.vin})
+                          {invoiceDetail?.car_id?.model} (Stock# {invoiceDetail?.car_id?.stock!=="undefined" ? invoiceDetail?.car_id?.stock : null}, VIN {invoiceDetail?.car_id?.vin})
                         </div>
                       </Col>
                       <Col sm="6" className="text-sm-end">
@@ -344,6 +338,8 @@ const InvoiceDetail = props => {
                       <Col>
                         <div className="text-sm-end">
                           <strong className="me-sm-5">Sub Total:</strong> <span className="ms-sm-3">${invoiceDetail?.total_sum}</span><br/>
+                          <strong className="me-sm-5">HST:</strong> <span className="ms-sm-3">${(invoiceDetail?.total_sum*13/100)*100/100}</span><br/>
+                          <strong className="me-sm-5">Total:</strong> <span className="ms-sm-3">${(invoiceDetail?.total_sum+(invoiceDetail?.total_sum*13/100))*100/100}</span><br/>
                         </div>
                       </Col>
                     </Row>
@@ -389,7 +385,7 @@ const InvoiceDetail = props => {
                                 <DropdownItem
                                   className="btn btn-soft-warning w-md"
                                     onClick={() => {
-                                      onClickExportNoTask()
+                                      onClickExportTask()
                                     }}
                                 >
                                     <i className="bx bxs-file-pdf font-size-16 align-middle me-2"/>PDF

@@ -132,111 +132,89 @@ const DetailTask = props => {
           </Card>
           <Row>
             <Col lg="12">
-              {/*<Card>*/}
-              {/*  <CardBody>*/}
-              {/*    <form className="outer-repeater">*/}
-                    <div data-repeater-list="outer-group" className="outer">
-                      <div data-repeater-item className="outer">
-                        <div className="inner-repeater mb-4">
-                          <div className="inner form-group mb-0 row">
-                            <Label className="col-form-label col-lg-2">
-                              Works
-                            </Label>
-                            <div
-                              className="inner col-lg-10 ml-md-auto"
-                              id="repeater"
-                            >
-                              {inputFields.map((field, key) => (
-                                <div
-                                  key={key}
-                                  id={"nested" + key}
-                                  className="mb-3 align-items-center d-flex w-100"
-                                >
-                                  <Col md="8" className="w-60">
-                                    <Input
-                                      type="text"
-                                      className="inner form-control input-mobile"
-                                      style={isMobile ? {width: "200px"} : null}
-                                      value={field.work}
-                                      onChange={(event => addWork(key, event.target.value))}
-                                      placeholder="Please Enter Work Name"
-                                    />
-                                  </Col>
-                                  <Col md="2" className="w-60 ms-2">
-                                    <div className="mt-md-0 input-group">
-                                      <button className="btn btn-success">$</button>
-                                      <Input
-                                        type="number"
-                                        placeholder="Please Enter Payment $"
-                                        className="form-control"
-                                        onChange={(event => addPayment(key, event.target.value))}
-                                        value={field.payment || ''}
-                                      />
-                                    </div>
-                                  </Col>
-                                  <Col md="2" className="w-60 ms-2">
-                                    <div className="mt-md-0 d-grid">
-                                      <Button
-                                        color="danger"
-                                        className="inner"
-                                        onClick={() => {
-                                          handleRemoveFields(key, field)
-                                        }}
-                                        block
-                                      >
-                                        <i className="bx bx-x"/>
-                                      </Button>
-                                    </div>
-                                  </Col>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                          <br/>
-                          <Row className="justify-content-end">
-                            <Col lg="10">
-                              <div className="float-end">
-                                {/*<Button*/}
-                                {/*    onClick={() => {*/}
-                                {/*        onClickPrev()*/}
-                                {/*    }}*/}
-                                {/*    color="primary"*/}
-                                {/*    className="w-md me-2"*/}
-                                {/*>*/}
-                                {/*  <i className="fa fa-chevron-left" />*/}
-                                {/*</Button>*/}
+              <div data-repeater-list="outer-group" className="outer">
+                <div data-repeater-item className="outer">
+                  <div className="inner-repeater mb-4">
+                    <div className="inner form-group mb-0 row">
+                      <Label className="col-form-label col-lg-2">
+                        Works
+                      </Label>
+                      <div
+                        className="inner col-lg-10 ml-md-auto"
+                        id="repeater"
+                      >
+                        {inputFields.map((field, key) => (
+                          <div
+                            key={key}
+                            id={"nested" + key}
+                            className="mb-3 align-items-center d-flex w-100"
+                          >
+                            <Col md="8" className="w-60">
+                              <Input
+                                type="text"
+                                className="inner form-control input-mobile"
+                                style={isMobile ? {width: "200px"} : null}
+                                value={field.work}
+                                onChange={(event => addWork(key, event.target.value))}
+                                placeholder="Work"
+                              />
+                            </Col>
+                            <Col md="2" className="w-60 ms-2">
+                              <div className="mt-md-0">
+                                <Input
+                                  type="number"
+                                  placeholder="$"
+                                  className="form-control"
+                                  onChange={(event => addPayment(key, event.target.value))}
+                                  value={field.payment || ''}
+                                />
+                              </div>
+                            </Col>
+                            <Col md="2" className="w-60 ms-2">
+                              <div className="mt-md-0 d-grid">
                                 <Button
-                                  color="success"
-                                  className="inner me-2"
+                                  color="danger"
+                                  className="inner"
                                   onClick={() => {
-                                    handleAddFields()
+                                    handleRemoveFields(key, field)
                                   }}
+                                  block
                                 >
-                                  Add
-                                </Button>
-                                {/*<Button*/}
-                                {/*    onClick={onClickPrev}*/}
-                                {/*    color="primary"*/}
-                                {/*    className="me-2"*/}
-                                {/*> Prev*/}
-                                {/*</Button>*/}
-                                <Button
-                                    color="primary"
-                                    className="me-2"
-                                    onClick={CreateTasks}
-                                  >
-                                    {/*<i className="fa fa-chevron-right" />*/}
-                                    Finish
+                                  <i className="bx bx-x"/>
                                 </Button>
                               </div>
                             </Col>
-                          </Row>
-                        </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
-              {/*    </form>*/}
-              {/*  </CardBody>*/}
-              {/*</Card>*/}
+                    <br/>
+                    <Row className="justify-content-end">
+                      <Col lg="10">
+                        <div className="float-end">
+                          <Button
+                            color="success"
+                            className="inner me-2"
+                            onClick={() => {
+                              handleAddFields()
+                            }}
+                          >
+                            Add
+                          </Button>
+                          <Button
+                              color="primary"
+                              className="me-2"
+                              onClick={CreateTasks}
+                            >
+                              {/*<i className="fa fa-chevron-right" />*/}
+                              Finish
+                          </Button>
+                        </div>
+                      </Col>
+                    </Row>
+                  </div>
+                </div>
+              </div>
             </Col>
           </Row>
         </Container>

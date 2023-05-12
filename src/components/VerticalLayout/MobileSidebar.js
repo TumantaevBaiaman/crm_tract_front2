@@ -1,25 +1,16 @@
 import PropTypes from "prop-types";
 import React, { useEffect, useRef, useState } from "react";
 
-// //Import Scrollbar
 import SimpleBar from "simplebar-react";
 import "../../status_account.css"
-// MetisMenu
+
 import MetisMenu from "metismenujs";
 import {useHistory, withRouter} from "react-router-dom";
-import { Link } from "react-router-dom";
 
-//i18n
 import { withTranslation } from "react-i18next";
 import {useDispatch, useSelector} from "react-redux";
 import {getProfile} from "../../store/profile/actions";
 import {Card, CardBody, Col} from "reactstrap";
-import dashboardLogo from "../../assets/images/MobileLogo/dashboardLogo.png"
-import customer_logo from "../../assets/images/MobileLogo/customersLogo.png";
-import my_day_logo from "../../assets/images/MobileLogo/mydayLogo.png";
-import settings_logo from "../../assets/images/MobileLogo/settingsLogo.png";
-import invoice_logo from "../../assets/images/MobileLogo/invoicesLogo.png";
-import reports_logo from "../../assets/images/MobileLogo/reportLogo.png";
 
 const SidebarContentMobile = props => {
 
@@ -115,9 +106,18 @@ const SidebarContentMobile = props => {
   }
 
   function tToggle() {
+    console.log(document.body.classList.value);
     var body = document.body;
-    if (window.screen.width <= 998) {
-      body.classList.toggle("sidebar-enable");
+    if (window?.screen.width <= 998) {
+      if (body.classList.contains('sidebar-enable')){
+        console.log(5)
+        body.classList.remove("sidebar-enable");
+        console.log(document.body.classList.value);
+      }else{
+        console.log(9)
+        body.classList.add("sidebar-enable");
+      }
+
     } else {
       body.classList.toggle("vertical-collpsed");
       body.classList.toggle("sidebar-enable");
@@ -125,8 +125,8 @@ const SidebarContentMobile = props => {
   }
 
   const onClickNext = (data) => {
-      history.push(data)
       tToggle()
+      history.push(data)
   }
 
   const color_status = () => {

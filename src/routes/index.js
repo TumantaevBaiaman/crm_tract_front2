@@ -73,6 +73,7 @@ import WorkOrder from "../pages/Customers/CustomerData/work-orders";
 import CarUpdate from "../pages/Customers/CustomerData/car-update";
 import CustomerService from "../pages/Customers/CustomerData/customer-service";
 import SettingSubMenu from "../pages/SubMenu/settings-sub-menu";
+import MobileMenu from "../pages/Lending/MobileMenu";
 
 let activ = false;
 if (localStorage.getItem("status_user")==="admin"){
@@ -81,6 +82,7 @@ if (localStorage.getItem("status_user")==="admin"){
 
 const authProtectedRoutes = [
   { path: "/my-day", component: MyDay },
+  { path: "/mobile-menu", component: MobileMenu},
   { path: "/dashboard", component: Dashboard },
 
   //Car

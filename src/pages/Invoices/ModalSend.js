@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React, {useState} from "react"
 import {Label, Modal, ModalBody} from "reactstrap"
 
-const ModalSend = ({ show, onClickTrue, onClickFalse, onCloseClick, email, setEmail, update }) => {
+const ModalSend = ({ show, onClickTrue, onClickFalse, onCloseClick, email, setEmail, update, startEmail, oneEmail, modalSave }) => {
 
 
   const [data, setData] = useState(true)
@@ -12,7 +12,12 @@ const ModalSend = ({ show, onClickTrue, onClickFalse, onCloseClick, email, setEm
   }
 
   const onClickSend = () => {
-    onClickFalse()
+    oneEmail()
+    if (startEmail !== email){
+        modalSave()
+    }else{
+        onClickFalse()
+    }
   }
 
   return (
@@ -41,8 +46,6 @@ const ModalSend = ({ show, onClickTrue, onClickFalse, onCloseClick, email, setEm
             </div>
           </div>
           <div className="hstack gap-2 justify-content-center mb-0">
-            <button type="button" className="btn btn-success" onClick={update}>Save</button>
-            {/*<button type="button" className="btn btn-info" onClick={onClickFalse}>Preview</button>*/}
             <button type="button" className="btn btn-success" onClick={onClickSend}>Send</button>
             <button type="button" className="btn btn-danger" onClick={onCloseClick}>Cancel</button>
           </div>

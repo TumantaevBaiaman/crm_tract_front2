@@ -14,7 +14,7 @@ import {
 } from "reactstrap"
 import DatePicker from "react-datepicker";
 
-const ModalSendList = ({ show, onClickTrue, onClickFalse, dateStart, dateEnd, dateStartMonth, dateEndMonth ,onCloseClick, email, setEmail, update, preview }) => {
+const ModalSendList = ({ show, onClickTrue, onClickFalse, dateStart, dateEnd, dateStartMonth, dateEndMonth ,onCloseClick, email, setEmail, update, preview, startEmail, oneEmail, modalSave }) => {
 
   const [data, setData] = useState(true)
   const [selectedMonth, setSelectedMonth] = useState(null);
@@ -35,7 +35,12 @@ const ModalSendList = ({ show, onClickTrue, onClickFalse, dateStart, dateEnd, da
   }
 
   const onClickSend = () => {
-    onClickTrue()
+    oneEmail()
+    if (startEmail !== email){
+        modalSave()
+    }else{
+        onClickFalse()
+    }
   }
 
   const color_btn = () => {
@@ -140,7 +145,6 @@ const ModalSendList = ({ show, onClickTrue, onClickFalse, dateStart, dateEnd, da
             </div>
           </div>
           <div className="hstack gap-2 justify-content-center mb-0">
-            <button type="button" className="btn btn-success" onClick={update}>Save</button>
             <button type="button" className="btn btn-info" onClick={preview}>Preview</button>
             <button type="button" className="btn btn-success" onClick={onClickSend}>Send</button>
             <button type="button" className="btn btn-danger" onClick={onCloseClick}>Cancel</button>

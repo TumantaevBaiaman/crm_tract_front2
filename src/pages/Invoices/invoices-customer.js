@@ -34,6 +34,7 @@ import {updateCustomersData as onUpdateCustomer} from "../../store/customer/acti
 import ModalExportList from "./ModalExportList";
 import {useMediaQuery} from "react-responsive";
 import {map} from "lodash";
+import ModalSave from "./ModalSave";
 
 const InvoiceCustomer = props => {
 
@@ -58,6 +59,9 @@ const InvoiceCustomer = props => {
 
   const [startDate2, setStartDate2] = useState('')
   const [endDate2, setEndDate2] = useState('')
+  const [emailModal, setEmailModal] = useState(false)
+  const [oneEmail, setOneEmail] = useState(false)
+
   const { invoices } = useSelector(state => ({
     invoices: state.invoices.invoicesCustomer,
   }));
@@ -137,6 +141,11 @@ const InvoiceCustomer = props => {
     }
   };
 
+  const onClickExportOne = (data) => {
+    setDataId(data)
+    onClickExportOneFalse()
+  };
+
   const onClickExportOneTrue = (data) => {
     const export_data = {
       "action": "export",
@@ -172,11 +181,6 @@ const InvoiceCustomer = props => {
   const onClickSendList = () => {
     setCustomerDataInfo(invoices[0]?.customer_id?.email)
     setModalListSend(true)
-  };
-
-  const onClickExportOne = (data) => {
-    setDataId(data)
-    onClickExportOneFalse()
   };
 
   const onClickSendOneFalse = (data) => {
@@ -227,7 +231,7 @@ const InvoiceCustomer = props => {
 
 
   const onClickSendListFalse = () => {
-    if (startDate==="" || endDate===""){
+    if (startDate2==="" || endDate2===""){
       toastr.error("Date Error");
     }
     else{
@@ -241,7 +245,7 @@ const InvoiceCustomer = props => {
       send: true
     }
     toastr.info("wait a little")
-    dispatch(onSendlistInvoice(export_data))
+    dispatch(onSendListInvoice(export_data))
     setModalListSend(false)
     }
   };
@@ -259,6 +263,13 @@ const InvoiceCustomer = props => {
       phone2: invoices[0]?.customer_id?.phone2 || ""
     };
     dispatch(onUpdateCustomer(updateCustomer));
+    dispatch(onGetInvoiceCustomer(params.id));
+    if (oneEmail===true){
+      onClickSendOneFalse()
+    }else {
+      onClickSendListFalse()
+    }
+    setEmailModal(false)
   }
 
   const previewDetail = () => {
@@ -310,6 +321,9 @@ const InvoiceCustomer = props => {
           email={customerDataInfo}
           setEmail={event => setCustomerDataInfo(event.target.value)}
           update={updateCustomer}
+          startEmail={invoices[0]?.customer_id?.email}
+          oneEmail={() => setOneEmail(true)}
+          modalSave={() => setEmailModal(true)}
       />
       <ModalSendList
           show={modalListSend}
@@ -324,6 +338,14 @@ const InvoiceCustomer = props => {
           setEmail={event => setCustomerDataInfo(event.target.value)}
           update={updateCustomer}
           preview={previewDetail}
+          startEmail={invoices[0]?.customer_id?.email}
+          oneEmail={() => setOneEmail(false)}
+          modalSave={() => setEmailModal(true)}
+      />
+      <ModalSave
+          show={emailModal}
+          update={updateCustomer}
+          onCloseClick={() => setEmailModal(false)}
       />
       <div className="page-content">
         <Container fluid>
@@ -364,7 +386,7 @@ const InvoiceCustomer = props => {
                             <div className="position-relative">
                               <Row>
                                 <Col>
-                                <label htmlFor="search-bar-0" className="search-label">
+                                  <label htmlFor="search-bar-0" className="search-label">
                                     <Input
                                         type="date"
                                         className="form-control"
@@ -374,14 +396,14 @@ const InvoiceCustomer = props => {
                                     </label>
                                   </Col>
                                   <Col>
-                                <label htmlFor="search-bar-0" className="search-label">
-                                    <Input
-                                        type="date"
-                                        className="form-control"
-                                        autoComplete="off"
-                                        onChange={(event) => setEndDate(event.target.value)}
-                                    />
-                                    </label>
+                                    <label htmlFor="search-bar-0" className="search-label">
+                                      <Input
+                                          type="date"
+                                          className="form-control"
+                                          autoComplete="off"
+                                          onChange={(event) => setEndDate(event.target.value)}
+                                      />
+                                      </label>
                                   </Col>
                                 </Row>
                               </div>
