@@ -321,8 +321,8 @@ const InvoiceDetail = props => {
                     <Row>
                       <Col sm="12">
                         <div className="text-sm-start font-size-14">
-                          <strong className="me-sm-5">Invoice Number:</strong> <strong><span className="ms-sm-3">{invoiceDetail.number}</span></strong><br/>
-                          <strong className="me-sm-5">PO Number:</strong> <strong><span className="ms-sm-5">{invoiceDetail.po}</span></strong>
+                          <strong className="me-sm-5">Invoice Number:</strong> <strong><span className="ms-sm-3">{invoiceDetail?.number}</span></strong><br/>
+                          <strong className="me-sm-5">PO Number:</strong> <strong><span className="ms-sm-5">{invoiceDetail?.po}</span></strong>
                         </div>
                       </Col>
                     </Row>
