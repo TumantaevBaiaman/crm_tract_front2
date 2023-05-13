@@ -110,8 +110,8 @@ const ReportOverviewDetail = props => {
                                   <td></td>
                                   <td>{task?.crew_id.username}</td>
                                   <td>{task?.number}</td>
-                                  <td>{task?.finished_at}</td>
-                                  <td>{task?.start_at}</td>
+                                  <td>{task?.finished_at.substr(0,10)}</td>
+                                  <td>{task?.start_at.substr(0,10)}</td>
                                   <td>$ {task?.total_sum}</td>
                                 </tr>
                                 ))}

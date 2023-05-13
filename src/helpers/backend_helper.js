@@ -320,7 +320,7 @@ export const deleteCustomer = customer =>
 // get invoices
 export const getInvoices = () => get(url.GET_INVOICES);
 const getInvoicesCustomer = id =>
-    post(`${url.GET_INVOICES_CUSTOMER}`, {"id": id});
+    post(`${url.GET_INVOICES_CUSTOMER}`, {"id": id, "account_id": localStorage.getItem("account_user")});
 const getMyDay = data => post(url.GET_MY_DAY, data)
 
 // get invoice details
