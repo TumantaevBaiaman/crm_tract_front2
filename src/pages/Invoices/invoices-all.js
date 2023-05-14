@@ -94,7 +94,7 @@ const InvoicesListAll = props => {
   }, [dispatch])
 
   const filterData = invoices?.invoices?.filter(invoice => {
-      return invoice.status.toLowerCase().includes(periodType.toLowerCase())
+      return invoice?.status?.toLowerCase().includes(periodType?.toLowerCase())
   })
 
   let isAdmin = false;

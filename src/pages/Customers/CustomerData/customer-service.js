@@ -157,7 +157,7 @@ const CustomerService = props => {
   }, [dispatch]);
 
   const filterData = customers.filter(customer => {
-    return customer?.email.toLowerCase().includes(filterAddress.toLowerCase()) && customer?.full_name.toLowerCase().includes(filterName.toLowerCase()) && customer?.phone.toLowerCase().includes(filterPhone)
+    return customer?.email?.toLowerCase().includes(filterAddress?.toLowerCase()) && customer?.full_name?.toLowerCase().includes(filterName?.toLowerCase()) && customer?.phone?.toLowerCase().includes(filterPhone)
   })
 
   useEffect(() => {

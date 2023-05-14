@@ -48,7 +48,7 @@ const ListAllCars = ()  => {
     // search
 
     const filterVinCar = cars.filter(car => {
-        return car.vin.toLowerCase().includes(searchValue.toLowerCase())
+        return car?.vin?.toLowerCase().includes(searchValue?.toLowerCase())
     })
 
     const onClickDeleteCar = () => {

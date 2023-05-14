@@ -82,16 +82,16 @@ const InvoiceCustomer = props => {
   const filterDate = invoices.filter(invoice => {
 
     if (startDate!=="" && endDate!==""){
-      return invoice.finished_at > startDate && invoice.finished_at < endDate && invoice.status.toLowerCase().includes(periodType.toLowerCase()) || invoice.finished_at.toLowerCase().includes(endDate.toLowerCase())
+      return invoice?.finished_at > startDate && invoice?.finished_at < endDate && invoice?.status?.toLowerCase().includes(periodType?.toLowerCase()) || invoice?.finished_at?.toLowerCase().includes(endDate?.toLowerCase())
     }
     if (startDate!=="" && endDate===""){
-      return invoice.finished_at > startDate && invoice.status.toLowerCase().includes(periodType.toLowerCase())
+      return invoice?.finished_at > startDate && invoice?.status?.toLowerCase().includes(periodType?.toLowerCase())
     }
     if (startDate==="" && endDate!==""){
-      return invoice.finished_at < endDate && invoice.status.toLowerCase().includes(periodType.toLowerCase()) || invoice.finished_at.toLowerCase().includes(endDate.toLowerCase())
+      return invoice?.finished_at < endDate && invoice?.status?.toLowerCase().includes(periodType?.toLowerCase()) || invoice?.finished_at?.toLowerCase().includes(endDate?.toLowerCase())
     }
     else{
-      return invoice.status.toLowerCase().includes(periodType.toLowerCase())
+      return invoice?.status?.toLowerCase().includes(periodType?.toLowerCase())
     }
   });
 

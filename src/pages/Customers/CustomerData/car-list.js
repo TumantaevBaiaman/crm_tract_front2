@@ -57,7 +57,7 @@ const ListCars = props  => {
       }, [params, onGetCars]);
 
     const filterVinCar = cars.filter(car => {
-        return car?.vin.toLowerCase().includes(searchValueVin.toLowerCase()) && car?.stock.toLowerCase().includes(searchValueStock.toLowerCase()) && car?.model.toLowerCase().includes(searchValueModel.toLowerCase()) && car?.make.toLowerCase().includes(searchValueMake.toLowerCase())
+        return car?.vin?.toLowerCase().includes(searchValueVin?.toLowerCase()) && car?.stock?.toLowerCase().includes(searchValueStock?.toLowerCase()) && car?.model?.toLowerCase().includes(searchValueModel?.toLowerCase()) && car?.make?.toLowerCase().includes(searchValueMake?.toLowerCase())
     })
 
     const onClickDeleteCar = () => {

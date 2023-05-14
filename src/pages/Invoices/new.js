@@ -80,28 +80,28 @@ const MyDay = props => {
   const filterDate = invoices.filter(invoice => {
         if (dataEmployee==="") {
             if (startDate !== "" && endDate !== "") {
-                return invoice.finished_at > startDate && invoice.finished_at < endDate && invoice.status.toLowerCase().includes(periodType.toLowerCase()) && (invoice.crew_id.lastname + invoice.crew_id.username).toLowerCase().includes(dataEmployee.toLowerCase()) && invoice.customer_id.full_name.toLowerCase().includes(dataCustomer.toLowerCase()) || invoice.finished_at.toLowerCase().includes(endDate.toLowerCase())
+                return invoice?.finished_at > startDate && invoice?.finished_at < endDate && invoice?.status?.toLowerCase().includes(periodType?.toLowerCase()) && (invoice?.crew_id?.lastname + invoice?.crew_id?.username)?.toLowerCase().includes(dataEmployee?.toLowerCase()) && invoice?.customer_id?.full_name?.toLowerCase().includes(dataCustomer?.toLowerCase()) || invoice?.finished_at?.toLowerCase().includes(endDate?.toLowerCase())
             }
             if (startDate !== "" && endDate === "") {
-                return invoice.finished_at > startDate && invoice.status.toLowerCase().includes(periodType.toLowerCase()) && (invoice.crew_id.lastname + invoice.crew_id.username).toLowerCase().includes(dataEmployee.toLowerCase()) && invoice.customer_id.full_name.toLowerCase().includes(dataCustomer.toLowerCase())
+                return invoice?.finished_at > startDate && invoice?.status?.toLowerCase().includes(periodType?.toLowerCase()) && (invoice?.crew_id?.lastname + invoice?.crew_id?.username)?.toLowerCase().includes(dataEmployee?.toLowerCase()) && invoice?.customer_id?.full_name?.toLowerCase().includes(dataCustomer?.toLowerCase())
             }
             if (startDate === "" && endDate !== "") {
-                return invoice.finished_at < endDate && invoice.status.toLowerCase().includes(periodType.toLowerCase()) && (invoice.crew_id.lastname + invoice.crew_id.username).toLowerCase().includes(dataEmployee.toLowerCase()) && invoice.customer_id.full_name.toLowerCase().includes(dataCustomer.toLowerCase()) || invoice.finished_at.toLowerCase().includes(endDate.toLowerCase())
+                return invoice?.finished_at < endDate && invoice?.status?.toLowerCase().includes(periodType?.toLowerCase()) && (invoice?.crew_id?.lastname + invoice?.crew_id?.username)?.toLowerCase().includes(dataEmployee?.toLowerCase()) && invoice?.customer_id?.full_name?.toLowerCase().includes(dataCustomer?.toLowerCase()) || invoice?.finished_at?.toLowerCase().includes(endDate?.toLowerCase())
             } else {
-                return invoice.status.toLowerCase().includes(periodType.toLowerCase()) && (invoice.crew_id.lastname + invoice.crew_id.username).toLowerCase().includes(dataEmployee.toLowerCase()) && invoice.customer_id.full_name.toLowerCase().includes(dataCustomer.toLowerCase()) && invoice.finished_at.toLowerCase().includes((year + '-' + month + '-' + date).toLowerCase())
+                return invoice?.status?.toLowerCase().includes(periodType?.toLowerCase()) && (invoice?.crew_id?.lastname + invoice?.crew_id?.username)?.toLowerCase().includes(dataEmployee?.toLowerCase()) && invoice?.customer_id?.full_name?.toLowerCase().includes(dataCustomer?.toLowerCase()) && invoice?.finished_at?.toLowerCase().includes((year + '-' + month + '-' + date)?.toLowerCase())
             }
         } else {
             if (startDate!=="" && endDate!==""){
-              return invoice.finished_at > startDate && invoice.finished_at < endDate && invoice.status.toLowerCase().includes(periodType.toLowerCase()) && (invoice.crew_id.lastname+invoice.crew_id.username).toLowerCase()===(dataEmployee.toLowerCase()) && invoice.customer_id.full_name.toLowerCase().includes(dataCustomer.toLowerCase()) || invoice.finished_at.toLowerCase().includes(endDate.toLowerCase())
+              return invoice?.finished_at > startDate && invoice?.finished_at < endDate && invoice?.status?.toLowerCase().includes(periodType?.toLowerCase()) && (invoice?.crew_id?.lastname+invoice?.crew_id?.username)?.toLowerCase()===(dataEmployee?.toLowerCase()) && invoice?.customer_id?.full_name?.toLowerCase().includes(dataCustomer?.toLowerCase()) || invoice?.finished_at?.toLowerCase().includes(endDate?.toLowerCase())
             }
             if (startDate!=="" && endDate===""){
-              return invoice.finished_at > startDate && invoice.status.toLowerCase().includes(periodType.toLowerCase()) && (invoice.crew_id.lastname+invoice.crew_id.username).toLowerCase()===(dataEmployee.toLowerCase()) && invoice.customer_id.full_name.toLowerCase().includes(dataCustomer.toLowerCase())
+              return invoice?.finished_at > startDate && invoice?.status?.toLowerCase().includes(periodType?.toLowerCase()) && (invoice?.crew_id?.lastname+invoice?.crew_id?.username)?.toLowerCase()===(dataEmployee?.toLowerCase()) && invoice?.customer_id?.full_name?.toLowerCase().includes(dataCustomer?.toLowerCase())
             }
             if (startDate==="" && endDate!==""){
-              return invoice.finished_at < endDate && invoice.status.toLowerCase().includes(periodType.toLowerCase()) && (invoice.crew_id.lastname+invoice.crew_id.username).toLowerCase()===(dataEmployee.toLowerCase()) && invoice.customer_id.full_name.toLowerCase().includes(dataCustomer.toLowerCase()) || invoice.finished_at.toLowerCase().includes(endDate.toLowerCase())
+              return invoice?.finished_at < endDate && invoice?.status?.toLowerCase().includes(periodType?.toLowerCase()) && (invoice?.crew_id?.lastname+invoice?.crew_id?.username)?.toLowerCase()===(dataEmployee?.toLowerCase()) && invoice?.customer_id?.full_name?.toLowerCase().includes(dataCustomer?.toLowerCase()) || invoice?.finished_at?.toLowerCase().includes(endDate?.toLowerCase())
             }
             else{
-              return invoice.status.toLowerCase().includes(periodType.toLowerCase()) && (invoice.crew_id.lastname+invoice.crew_id.username).toLowerCase()===(dataEmployee.toLowerCase()) && invoice.customer_id.full_name.toLowerCase().includes(dataCustomer.toLowerCase()) && invoice.finished_at.toLowerCase().includes((year+'-'+month+'-'+date).toLowerCase())
+              return invoice?.status?.toLowerCase().includes(periodType?.toLowerCase()) && (invoice?.crew_id?.lastname+invoice?.crew_id?.username)?.toLowerCase()===(dataEmployee?.toLowerCase()) && invoice?.customer_id?.full_name?.toLowerCase().includes(dataCustomer?.toLowerCase()) && invoice?.finished_at?.toLowerCase().includes((year+'-'+month+'-'+date)?.toLowerCase())
             }
         }
     });

@@ -20,7 +20,7 @@ const CardTaskBox = props => {
           <span
                 className={classNames(
                   "badge rounded-pill badge-soft-secondary font-size-12",
-                  statusClasses[data.status.toLowerCase()]
+                  statusClasses[data?.status?.toLowerCase()]
                 )}
               >
                 {data.status}
