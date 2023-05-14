@@ -217,8 +217,8 @@ const InvoiceDetailList = props => {
                                 (item, key) => (
                                   <tr key={key}>
                                     <td>{item?.number}</td>
-                                    <td>{item?.start_at}</td>
-                                    <td>{item?.finished_at}</td>
+                                    <td>{item?.start_at.substr(0,10)}</td>
+                                    <td>{item?.finished_at.substr(0,10)}</td>
                                     <td>{item?.status}</td>
                                     <td>$ {item?.total_sum}</td>
                                     <td>$ {item?.paid || 0}</td>
