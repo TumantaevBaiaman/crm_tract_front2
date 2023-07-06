@@ -102,33 +102,6 @@ const CreateCustomer = () => {
                             <div data-repeater-list="outer-group" className="outer">
                                 <Row>
                                 <Col md={6}>
-                                    <div data-repeater-item className="outer">
-                                        <FormGroup className="mb-4" row>
-                                          <Label
-                                            htmlFor="vin"
-                                            className="col-form-label col-lg-2"
-                                            >Email</Label>
-                                            <Col lg="10">
-                                              <div className="input-group">
-                                              <Input
-                                                name="email"
-                                                type="text"
-                                                onChange={validation.handleChange}
-                                                onBlur={validation.handleBlur}
-                                                placeholder="Please Enter Email"
-                                                value={validation.values.email || ""}
-                                                invalid={
-                                                  validation.touched.email && validation.errors.email ? true : false
-                                                }
-                                            />
-                                            {validation.touched.email && validation.errors.email ? (
-                                                <FormFeedback type="invalid">{validation.errors.email}</FormFeedback>
-                                            ) : isMobile ? null: <button className={"btn info_new"+color_btn()} id="inputGroupFileAddon03" data-title="Need email to register, Ex: john@email.com"><i className="mdi mdi-alert-circle-outline"></i></button>}
-                                              </div>
-                                          </Col>
-                                        </FormGroup>
-                                    </div>
-
                                     <div data-repeater-list="outer-group" className="outer">
                                         <div data-repeater-item className="outer">
                                             <FormGroup className="mb-4" row>
@@ -214,8 +187,6 @@ const CreateCustomer = () => {
                                             </FormGroup>
                                         </div>
                                     </div>
-                                </Col>
-                                <Col md={6}>
                                     <div data-repeater-list="outer-group" className="outer">
                                         <div data-repeater-item className="outer">
                                             <FormGroup className="mb-4" row>
@@ -244,7 +215,10 @@ const CreateCustomer = () => {
                                               </Col>
                                             </FormGroup>
                                         </div>
-
+                                    </div>
+                                </Col>
+                                <Col md={6}>
+                                    <div data-repeater-list="outer-group" className="outer">
                                         <div data-repeater-list="outer-group" className="outer">
                                             <div data-repeater-item className="outer">
                                                 <FormGroup className="mb-4" row>
@@ -272,6 +246,32 @@ const CreateCustomer = () => {
                                                     </Col>
                                                 </FormGroup>
                                             </div>
+                                        </div>
+                                        <div data-repeater-item className="outer">
+                                            <FormGroup className="mb-4" row>
+                                              <Label
+                                                htmlFor="vin"
+                                                className="col-form-label col-lg-2"
+                                                >Email</Label>
+                                                <Col lg="10">
+                                                  <div className="input-group">
+                                                  <Input
+                                                    name="email"
+                                                    type="text"
+                                                    onChange={validation.handleChange}
+                                                    onBlur={validation.handleBlur}
+                                                    placeholder="Please Enter Email"
+                                                    value={validation.values.email || ""}
+                                                    invalid={
+                                                      validation.touched.email && validation.errors.email ? true : false
+                                                    }
+                                                />
+                                                {validation.touched.email && validation.errors.email ? (
+                                                    <FormFeedback type="invalid">{validation.errors.email}</FormFeedback>
+                                                ) : isMobile ? null: <button className={"btn info_new"+color_btn()} id="inputGroupFileAddon03" data-title="Need email to register, Ex: john@email.com"><i className="mdi mdi-alert-circle-outline"></i></button>}
+                                                  </div>
+                                              </Col>
+                                            </FormGroup>
                                         </div>
                                         <div data-repeater-list="outer-group" className="outer">
                                             <div data-repeater-item className="outer">

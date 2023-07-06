@@ -142,10 +142,10 @@ const Profile = () => {
                                                   <th scope="row">Mobile Phone :</th>
                                                   <td>{phone}</td>
                                                 </tr>
-                                                <tr>
-                                                  <th scope="row">Date of birth :</th>
-                                                  <td>{date}</td>
-                                                </tr>
+                                                {/*<tr>*/}
+                                                {/*  <th scope="row">Date of birth :</th>*/}
+                                                {/*  <td>{date}</td>*/}
+                                                {/*</tr>*/}
                                               </tbody>
                                             </Table>
                                           </div>

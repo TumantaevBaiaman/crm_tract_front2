@@ -74,6 +74,12 @@ const CardCustomerService = ({ data }) => {
                               <i className="bx bx-map me-1 text-primary"/>{"Address: "}
                               {data?.country} {data?.street1} {data?.street2}
                             </h5>
+                          </li><br/>
+                          <li className="list-inline-item me-3">
+                            <h5 className="font-size-12" id="duedateTooltip">
+                              {"postalCode: "}
+                              {data?.postal_code}
+                            </h5>
                           </li>
                         </ul>
                     </div>
@@ -84,19 +90,19 @@ const CardCustomerService = ({ data }) => {
                         <li className="list-inline-item me-3">
                             <h5 className="font-size-12" id="duedateTooltip">
                               <i className="bx bx-phone me-1 text-primary"/>{" 1 phone: "}
-                                {data?.phone}
+                                {data?.phone || null}
                             </h5>
                           </li><br/>
                           <li className="list-inline-item me-1">
                             <h5 className="font-size-12" id="duedateTooltip">
                               <i className="bx bx-phone me-1 text-primary"/>{" 2 phone: "}
-                                {data?.phone2 || "None"}
+                                {data?.phone2 || null}
                             </h5>
                           </li><br/>
                           <li className="list-inline-item me-3">
                             <h5 className="font-size-12" id="duedateTooltip">
                               <i className="bx bx-mail-send me-1 text-primary"/>{" "}
-                              {data?.email}
+                              {data?.email?.substring(0, 40)}{data?.email?.length > 40 ? <>...</>: null}
                             </h5>
                           </li>
                         </ul>

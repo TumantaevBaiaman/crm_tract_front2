@@ -35,7 +35,7 @@ const Register = props => {
       username: '',
       lastname: '',
       phone: '',
-      joiningDate: '',
+      joiningDate: '2000-01-01',
     },
     validationSchema: Yup.object({
       email: Yup.string().required("Please Enter Your Email"),
@@ -200,26 +200,26 @@ const Register = props => {
                         </div>
                       </div>
 
-                      <div className="mb-3">
-                        <Label className="form-label">Date of birth</Label>
-                        <div className="input-group">
-                        <Input
-                            name="joiningDate"
-                            type="date"
-                            className="form-control"
-                            placeholder="Enter date"
-                            onChange={validation.handleChange}
-                            onBlur={validation.handleBlur}
-                            value={validation.values.joiningDate || ""}
-                            invalid={
-                              validation.touched.joiningDate && validation.errors.joiningDate ? true : false
-                            }
-                        />
-                        {validation.touched.joiningDate && validation.errors.joiningDate ? (
-                            <FormFeedback type="invalid">{validation.errors.joiningDate}</FormFeedback>
-                        ) : <button className="btn btn-success info_new" id="inputGroupFileAddon03" data-title="Need date of birth to register"><i className="mdi mdi-alert-circle-outline"></i></button>}
-                        </div>
-                      </div>
+                      {/*<div className="mb-3">*/}
+                      {/*  <Label className="form-label">Date of birth</Label>*/}
+                      {/*  <div className="input-group">*/}
+                      {/*  <Input*/}
+                      {/*      name="joiningDate"*/}
+                      {/*      type="date"*/}
+                      {/*      className="form-control"*/}
+                      {/*      placeholder="Enter date"*/}
+                      {/*      onChange={validation.handleChange}*/}
+                      {/*      onBlur={validation.handleBlur}*/}
+                      {/*      value={validation.values.joiningDate || ""}*/}
+                      {/*      invalid={*/}
+                      {/*        validation.touched.joiningDate && validation.errors.joiningDate ? true : false*/}
+                      {/*      }*/}
+                      {/*  />*/}
+                      {/*  {validation.touched.joiningDate && validation.errors.joiningDate ? (*/}
+                      {/*      <FormFeedback type="invalid">{validation.errors.joiningDate}</FormFeedback>*/}
+                      {/*  ) : <button className="btn btn-success info_new" id="inputGroupFileAddon03" data-title="Need date of birth to register"><i className="mdi mdi-alert-circle-outline"></i></button>}*/}
+                      {/*  </div>*/}
+                      {/*</div>*/}
 
                       {loading && loading ? (
                         <Row>

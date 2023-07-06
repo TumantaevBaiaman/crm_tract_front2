@@ -295,7 +295,7 @@ const UpdateAccountAdmin = props => {
                                             name="hst"
                                             className="form-control"
                                             placeholder="Enter hst"
-                                            type="number"
+                                            type="text"
                                             onChange={validation.handleChange}
                                             onBlur={validation.handleBlur}
                                             value={validation.values.hst || ""}

@@ -192,24 +192,24 @@ const ProfileUpdate = () => {
                                       <FormFeedback type="invalid">{validation.errors.phone}</FormFeedback>
                                   ) : null}
                               </div>
-                              <div className="form-group">
-                                <Label className="form-label">Date</Label>
-                                <Input
-                                    name="joiningDate"
-                                    type="date"
-                                    className="form-control"
-                                    placeholder="Enter date"
-                                    onChange={validation.handleChange}
-                                    onBlur={validation.handleBlur}
-                                    value={validation.values.joiningDate || ""}
-                                    invalid={
-                                      validation.touched.joiningDate && validation.errors.joiningDate ? true : false
-                                    }
-                                />
-                                {validation.touched.joiningDate && validation.errors.joiningDate ? (
-                                    <FormFeedback type="invalid">{validation.errors.joiningDate}</FormFeedback>
-                                ) : null}
-                              </div>
+                              {/*<div className="form-group">*/}
+                              {/*  <Label className="form-label">Date</Label>*/}
+                              {/*  <Input*/}
+                              {/*      name="joiningDate"*/}
+                              {/*      type="date"*/}
+                              {/*      className="form-control"*/}
+                              {/*      placeholder="Enter date"*/}
+                              {/*      onChange={validation.handleChange}*/}
+                              {/*      onBlur={validation.handleBlur}*/}
+                              {/*      value={validation.values.joiningDate || ""}*/}
+                              {/*      invalid={*/}
+                              {/*        validation.touched.joiningDate && validation.errors.joiningDate ? true : false*/}
+                              {/*      }*/}
+                              {/*  />*/}
+                              {/*  {validation.touched.joiningDate && validation.errors.joiningDate ? (*/}
+                              {/*      <FormFeedback type="invalid">{validation.errors.joiningDate}</FormFeedback>*/}
+                              {/*  ) : null}*/}
+                              {/*</div>*/}
                               <div className="d-print-none" style={{ marginTop: 25}}>
                                   <div className="float-end">
                                       <button

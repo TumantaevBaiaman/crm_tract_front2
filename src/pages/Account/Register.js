@@ -204,32 +204,6 @@ const RegisterAccount = props => {
                                       <Label
                                         htmlFor="vin"
                                         className="col-form-label col-lg-2"
-                                        >Email</Label>
-                                        <Col lg="10">
-                                          <Input
-                                            id="email"
-                                            name="email"
-                                            className="form-control"
-                                            placeholder="Enter email"
-                                            type="email"
-                                            onChange={validation.handleChange}
-                                            onBlur={validation.handleBlur}
-                                            invalid={
-                                              validation.touched.email && validation.errors.email ? true : false
-                                            }
-                                          />
-                                          {validation.touched.email && validation.errors.email ? (
-                                            <FormFeedback type="invalid">{validation.errors.email}</FormFeedback>
-                                          ) : null}
-                                      </Col>
-                                    </FormGroup>
-                                </div>
-
-                                <div data-repeater-item className="outer">
-                                    <FormGroup className="mb-4" row>
-                                      <Label
-                                        htmlFor="vin"
-                                        className="col-form-label col-lg-2"
                                         >Name</Label>
                                         <Col lg="10">
                                           <Input
@@ -333,6 +307,32 @@ const RegisterAccount = props => {
                                 <div data-repeater-item className="outer">
                                     <FormGroup className="mb-4" row>
                                       <Label
+                                        htmlFor="vin"
+                                        className="col-form-label col-lg-2"
+                                        >Email</Label>
+                                        <Col lg="10">
+                                          <Input
+                                            id="email"
+                                            name="email"
+                                            className="form-control"
+                                            placeholder="Enter email"
+                                            type="email"
+                                            onChange={validation.handleChange}
+                                            onBlur={validation.handleBlur}
+                                            invalid={
+                                              validation.touched.email && validation.errors.email ? true : false
+                                            }
+                                          />
+                                          {validation.touched.email && validation.errors.email ? (
+                                            <FormFeedback type="invalid">{validation.errors.email}</FormFeedback>
+                                          ) : null}
+                                      </Col>
+                                    </FormGroup>
+                                </div>
+
+                                <div data-repeater-item className="outer">
+                                    <FormGroup className="mb-4" row>
+                                      <Label
                                         htmlFor="phone"
                                         className="col-form-label col-lg-2"
                                         >Phone</Label>
@@ -368,7 +368,7 @@ const RegisterAccount = props => {
                                             name="hst"
                                             className="form-control"
                                             placeholder="Enter hst"
-                                            type="number"
+                                            type="text"
                                             onChange={validation.handleChange}
                                             onBlur={validation.handleBlur}
                                             invalid={

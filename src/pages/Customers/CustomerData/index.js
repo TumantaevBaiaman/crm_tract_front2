@@ -225,6 +225,7 @@ const CustomersList = props => {
                   <div className="d-sm-flex flex-wrap">
                     <Col lg="10">
                       <div className="search-box text-start d-flex">
+                        <Row>
                           <Col>
                             <div className="input-group-text">
                               <div>
@@ -239,7 +240,7 @@ const CustomersList = props => {
                               />
                             </div>
                           </Col>
-                          <Col className="ms-sm-2">
+                          <Col className="">
                             <div className="input-group-text">
                               <div>
                                 Address
@@ -253,7 +254,7 @@ const CustomersList = props => {
                               />
                             </div>
                           </Col>
-                          <Col className="ms-sm-2">
+                          <Col className="">
                             <div className="input-group-text">
                               <div>
                                 Phone
@@ -267,6 +268,7 @@ const CustomersList = props => {
                               />
                             </div>
                           </Col>
+                        </Row>
                       </div>
                     </Col>
                     <Col lg="2">

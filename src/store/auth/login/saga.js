@@ -28,6 +28,7 @@ function* loginUser({ payload: { user, history } }) {
       const response = yield call(postJwtLogin, {
         email: user.email,
         password: user.password,
+        account_status: "0",
       });
       localStorage.setItem("access_token", response.access);
       localStorage.setItem("refresh_token", response.refresh);

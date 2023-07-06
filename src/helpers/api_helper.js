@@ -8,6 +8,7 @@ const token = accessToken;
 
 //apply base url for axios
 const API_URL = "https://backapt.com";
+// const API_URL = "http://127.0.0.1:8000";
 
 const axiosApi = axios.create({
   baseURL: API_URL,

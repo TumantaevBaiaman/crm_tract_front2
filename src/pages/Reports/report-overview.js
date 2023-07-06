@@ -255,283 +255,282 @@ const ReportOverview = props => {
 
   return (
     <React.Fragment>
-      <ModalTask
-          show={modal}
-          onClickTrue={onClickExportTask}
-          onClickFalse={onClickExportNoTask}
-          onCloseClick={() => setModal(false)}
-      />
-      <div className="page-content">
-        <Container fluid>
-          <Breadcrumbs title="AutoPro" breadcrumbItem="Invoice Report Overview" />
-          <AccordionContent text="open">
-          <br/>
-          <Col xl={12}>
-              <Card>
-                  <div className="d-sm-flex flex-wrap">
-                    <Col lg={6}>
-                        <div className="position-relative">
-                            <div className="search-box my-3 my-xxl-0 d-inline-block">
-                              <div className="position-relative">
-                                  {dateData==="Range Date" ? (
-                                      <Row>
-                                          <Col lg={4}>
-                                              <UncontrolledDropdown>
-                                                <DropdownToggle tag="a" to="#" className="card-drop w-md font-size-12" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i className={"bx bx-filter btn w-lg me-4"+color_btn()}> <strong className="ms-2">{dateData}</strong> </i>
-                                                </DropdownToggle>
-                                                <DropdownMenu>
-                                                    <DropdownItem
-                                                        className="btn btn-soft-primary w-lg font-size-12"
-                                                        onClick={() => setDateData("Range Date")}
-                                                    >
-                                                        <i className="bx bx-calendar align-middle me-2"/>
-                                                        Range Date
-                                                    </DropdownItem>
-                                                    <DropdownItem
-                                                        className="btn btn-soft-primary w-lg font-size-12"
-                                                        onClick={() => setDateData("Month")}
-                                                    >
-                                                        <i className="bx bx-calendar align-middle me-2"/>
-                                                        Month
-                                                    </DropdownItem>
-                                                </DropdownMenu>
-                                              </UncontrolledDropdown>
-                                          </Col>
-                                        <Col lg={4}>
-                                            <div className="d-inline-flex">
-                                                <Label className="form-label align-center mt-2">StartDate  </Label>
-                                                <Input
-                                                    type="date"
-                                                    className="form-control"
-                                                    autoComplete="off"
-                                                    value={startDate || year+"-"+month+"-"+"01"}
-                                                    onChange={(event) => setStartDate(event.target.value)}
-                                                />
+        <ModalTask
+            show={modal}
+            onClickTrue={onClickExportTask}
+            onClickFalse={onClickExportNoTask}
+            onCloseClick={() => setModal(false)}
+        />
+        <div className="page-content">
+            <Container fluid>
+                <Breadcrumbs title="AutoPro" breadcrumbItem="Invoice Report Overview" />
+                <AccordionContent text="open">
+                    <br/>
+                    <Col xl={12}>
+                        <Card>
+                            <div className="d-sm-flex flex-wrap">
+                                <Col lg={6}>
+                                    <div className="position-relative">
+                                        <div className="search-box my-xxl-0 d-inline-block">
+                                            <div className="position-relative w-100">
+                                                {dateData==="Range Date" ? (
+                                                    <Row>
+                                                        <Col lg={4} style={{width: "30%"}}>
+                                                            <UncontrolledDropdown>
+                                                                <DropdownToggle tag="a" to="#" className="card-drop w-md font-size-12" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <i className={"bx bx-filter btn w-lg me-4"+color_btn()}> <strong className="ms-2">{dateData}</strong> </i>
+                                                                </DropdownToggle>
+                                                                <DropdownMenu>
+                                                                    <DropdownItem
+                                                                        className="btn btn-soft-primary w-lg font-size-12"
+                                                                        onClick={() => setDateData("Range Date")}
+                                                                    >
+                                                                        <i className="bx bx-calendar align-middle me-2"/>
+                                                                        Range Date
+                                                                    </DropdownItem>
+                                                                    <DropdownItem
+                                                                        className="btn btn-soft-primary w-lg font-size-12"
+                                                                        onClick={() => setDateData("Month")}
+                                                                    >
+                                                                        <i className="bx bx-calendar align-middle me-2"/>
+                                                                        Month
+                                                                    </DropdownItem>
+                                                                </DropdownMenu>
+                                                            </UncontrolledDropdown>
+                                                        </Col>
+                                                        <Col lg={4} style={{width: "35%"}}>
+                                                            <div className="d-inline-flex">
+                                                                <Label className="form-label align-center mt-2">StartDate  </Label>
+                                                                <Input
+                                                                    type="date"
+                                                                    className="form-control"
+                                                                    autoComplete="off"
+                                                                    value={startDate || year+"-"+month+"-"+"01"}
+                                                                    onChange={(event) => setStartDate(event.target.value)}
+                                                                />
+                                                            </div>
+                                                        </Col>
+                                                        <Col lg={4} style={{width: "35%"}}>
+                                                            <div className="d-inline-flex ms-sm-4">
+                                                                <Label className="form-label align-center mt-2 ">EndDate  </Label>
+                                                                <Input
+                                                                    type="date"
+                                                                    className="form-control"
+                                                                    autoComplete="off"
+                                                                    value={endDate || year+"-"+month+"-"+date}
+                                                                    onChange={(event) => setEndDate(event.target.value)}
+                                                                />
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
+                                                ): (
+                                                    <Row>
+                                                        <Col lg={4} style={{width: "30%"}}>
+                                                            <UncontrolledDropdown>
+                                                                <DropdownToggle tag="a" to="#" className="card-drop w-md font-size-12" data-bs-toggle="dropdown" aria-expanded="false">
+                                                                    <i className={"bx bx-filter btn w-lg me-4"+color_btn()}> <strong className="ms-2">{dateData}</strong> </i>
+                                                                </DropdownToggle>
+                                                                <DropdownMenu>
+                                                                    <DropdownItem
+                                                                        className="btn btn-soft-primary w-lg font-size-12"
+                                                                        onClick={() => setDateData("Range Date")}
+                                                                    >
+                                                                        <i className="bx bx-calendar align-middle me-2"/>
+                                                                        Range Date
+                                                                    </DropdownItem>
+                                                                    <DropdownItem
+                                                                        className="btn btn-soft-primary w-lg font-size-12"
+                                                                        onClick={() => setDateData("Month")}
+                                                                    >
+                                                                        <i className="bx bx-calendar align-middle me-2"/>
+                                                                        Month
+                                                                    </DropdownItem>
+                                                                </DropdownMenu>
+                                                            </UncontrolledDropdown>
+                                                        </Col>
+                                                        <Col lg={8} style={{width: "70%"}}>
+                                                            <div className="ms-4">
+                                                                <DatePicker
+                                                                    id="month-picker"
+                                                                    dateFormat="MM/yyyy"
+                                                                    className="form-control"
+                                                                    showMonthYearPicker
+                                                                    selected={selectedMonth}
+                                                                    onChange={onChangeRangeMonth}
+                                                                />
+                                                            </div>
+                                                        </Col>
+                                                    </Row>
+                                                )}
                                             </div>
-                                        </Col>
-                                        <Col lg={4}>
-                                            <div className="d-inline-flex">
-                                                <Label className="form-label align-center mt-2 ms-sm-4">EndDate  </Label>
-                                                <Input
-                                                    type="date"
-                                                    className="form-control"
-                                                    autoComplete="off"
-                                                    value={endDate || year+"-"+month+"-"+date}
-                                                    onChange={(event) => setEndDate(event.target.value)}
-                                                />
-                                            </div>
-                                          </Col>
-                                        </Row>
-                                  ): (
-                                      <Row>
-                                          <Col lg={4}>
-                                              <UncontrolledDropdown>
-                                                <DropdownToggle tag="a" to="#" className="card-drop w-md font-size-12" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <i className={"bx bx-filter btn w-lg me-4"+color_btn()}> <strong className="ms-2">{dateData}</strong> </i>
-                                                </DropdownToggle>
-                                                <DropdownMenu>
-                                                    <DropdownItem
-                                                        className="btn btn-soft-primary w-lg font-size-12"
-                                                        onClick={() => setDateData("Range Date")}
-                                                    >
-                                                        <i className="bx bx-calendar align-middle me-2"/>
-                                                        Range Date
-                                                    </DropdownItem>
-                                                    <DropdownItem
-                                                        className="btn btn-soft-primary w-lg font-size-12"
-                                                        onClick={() => setDateData("Month")}
-                                                    >
-                                                        <i className="bx bx-calendar align-middle me-2"/>
-                                                        Month
-                                                    </DropdownItem>
-                                                </DropdownMenu>
-                                              </UncontrolledDropdown>
-                                          </Col>
-                                          <Col lg={8}>
-                                              <div className="ms-4">
-                                                  <DatePicker
-                                                    id="month-picker"
-                                                    dateFormat="MM/yyyy"
-                                                    className="form-control"
-                                                    showMonthYearPicker
-                                                    selected={selectedMonth}
-                                                    onChange={onChangeRangeMonth}
-                                                  />
-                                              </div>
-                                          </Col>
-                                      </Row>
-                                  )}
-
-                                </div>
-                            </div>
-                        </div>
-                    </Col>
-                      <Col lg={6}>
-                          <div className="position-relative text-end">
-                            <div className="me-xxl-2 my-3 my-xxl-0 d-inline-block">
-                              <div className="position-relative w-100 input-group">
-                                <Row>
-                                  <Col>
-                                  <UncontrolledDropdown>
-                                      <DropdownToggle type="button" className={"w-xl font-size-12 form-control" + color_btn()}>
-                                          {filter}  <i className="mdi mdi-filter"></i>
-                                      </DropdownToggle>
-                                      <DropdownMenu>
-                                        <DropdownItem onClick={() => onFilter("Customer")}>Customer</DropdownItem>
-                                        <DropdownItem onClick={() => onFilter("Invoice Number")}>Invoice Number</DropdownItem>
-                                        <DropdownItem onClick={() => onFilter("Crew")}>Crew</DropdownItem>
-                                        <DropdownItem onClick={() => onFilter("Generated Date")}>Generated Date</DropdownItem>
-                                        <DropdownItem onClick={() => onFilter("Invoice Date")}>Invoice Date</DropdownItem>
-                                      </DropdownMenu>
-                                    </UncontrolledDropdown>
-                                  </Col>
-                                    <Col>
-                                        {customerActiv ?
-                                            <select
-                                                className="w-lg form-select select2 mb-3 mb-xxl-0 w-xl"
-                                                onChange={(event => {
-                                                    if (event.target.value!=="Customer"){
-                                                        onClickCustomer(event.target.value)
-                                                    }else {
-                                                        setDataCustomer('')}
-                                                })}
-                                                style={{width: "230px"}}
-                                            >
-                                                <option>Customer</option>
-                                                    {
-                                                        customers.map(option => (
-                                                            <option key={option.id} value={option.id}>
-                                                                {option.full_name}
-                                                            </option>
-                                                    ))}
-                                            </select> : null
-                                        }
-                                        {invoiceNumberActiv ?
-                                            <div className="w-100" style={{display: "flex", width: "230px"}}>
-                                                <Input type="text" className="w-lg w-80" placeholder="Enter Invoice Number" value={invoiceNumber} onChange={event => onClickNumber(event.target.value)} style={{width: "200px"}}/>
-                                                <button className="btn btn-danger w-20 ms-1" onClick={() => onClickNumber("")}><i className="bx bx-x"/></button>
-                                            </div>
-                                            : null
-                                        }
-                                        {crewActiv ?
-                                            <select
-                                                  className="w-lg form-select select2 mb-3 mb-xxl-0 w-xl"
-                                                  onChange={(event => {
-                                                      if (event.target.value!=="Employee"){
-                                                          onClickCrew(event.target.value)
-                                                      }else {
-                                                          setDataEmployee('')
-                                                      }
-                                                  })}
-                                                  style={{width: "230px"}}
-                                            >
-                                                <option>Employee</option>
-                                                  {employee.map(option => (
-                                                          <option key={option.id} value={option.id} >
-                                                              {option?.lastname} {option?.username?.[0]}
-                                                          </option>
-                                                      ))}
-                                            </select> : null
-                                        }
-                                        {generatedDateActiv ?
-                                            <div className="w-100" style={{display: "flex", width: "230px"}}>
-                                                <Input type="date" className="form-control w-lg " value={generatedDate} style={{width: "200px"}} onChange={event => onClickGDate(event.target.value)}/>
-                                                <button className="btn btn-danger w-20 ms-1" onClick={() => onClickGDate("")}><i className="bx bx-x"/></button>
-                                            </div>: null
-                                        }
-                                        {invoiceDateActiv ?
-                                            <div className="w-100" style={{display: "flex", width: "230px"}}>
-                                                <Input type="date" className="form-control w-lg" value={invoiceDate} style={{width: "200px"}} onChange={event => onClickIDate(event.target.value)}/>
-                                                <button className="btn btn-danger w-20 ms-1" onClick={() => onClickIDate("")}><i className="bx bx-x"/></button>
-                                            </div>: null
-                                        }
-                                    </Col>
-                                    <Col >
-                                      <div className="position-relative text-end">
-                                        <div className="me-xxl-2 my-3 my-xxl-0 d-inline-block">
-                                          <div className="position-relative">
-                                            <Row>
-                                                <Col>
-                                                    <button className={"btn form-control" + color_btn()} onClick={onClickRun}>Run</button>
-                                                </Col>
-                                            </Row>
-                                          </div>
                                         </div>
-                                      </div>
-                                    </Col>
-                                </Row>
-                              </div>
+                                    </div>
+                                </Col>
+                                <Col lg={6}>
+                                    <div className="position-relative text-end">
+                                        <div className="me-xxl-2 my-3 my-xxl-0 d-inline-block">
+                                            <div className="position-relative w-100 input-group">
+                                                <Row>
+                                                    <Col>
+                                                        <UncontrolledDropdown>
+                                                            <DropdownToggle type="button" className={"w-xl font-size-12 form-control" + color_btn()}>
+                                                                {filter}  <i className="mdi mdi-filter"></i>
+                                                            </DropdownToggle>
+                                                            <DropdownMenu>
+                                                                <DropdownItem onClick={() => onFilter("Customer")}>Customer</DropdownItem>
+                                                                <DropdownItem onClick={() => onFilter("Invoice Number")}>Invoice Number</DropdownItem>
+                                                                <DropdownItem onClick={() => onFilter("Crew")}>Crew</DropdownItem>
+                                                                <DropdownItem onClick={() => onFilter("Generated Date")}>Generated Date</DropdownItem>
+                                                                <DropdownItem onClick={() => onFilter("Invoice Date")}>Invoice Date</DropdownItem>
+                                                            </DropdownMenu>
+                                                        </UncontrolledDropdown>
+                                                    </Col>
+                                                    <Col>
+                                                        {customerActiv ?
+                                                            <select
+                                                                className="w-lg form-select select2 mb-3 mb-xxl-0 w-xl"
+                                                                onChange={(event => {
+                                                                    if (event.target.value!=="Customer"){
+                                                                        onClickCustomer(event.target.value)
+                                                                    }else {
+                                                                        setDataCustomer('')}
+                                                                })}
+                                                                style={{width: "230px"}}
+                                                            >
+                                                                <option>Customer</option>
+                                                                    {
+                                                                        customers.map(option => (
+                                                                            <option key={option.id} value={option.id}>
+                                                                                {option.full_name}
+                                                                            </option>
+                                                                    ))}
+                                                            </select> : null
+                                                        }
+                                                        {invoiceNumberActiv ?
+                                                            <div className="w-100" style={{display: "flex", width: "230px"}}>
+                                                                <Input type="text" className="w-lg w-80" placeholder="Enter Invoice Number" value={invoiceNumber} onChange={event => onClickNumber(event.target.value)} style={{width: "200px"}}/>
+                                                                <button className="btn btn-danger w-20 ms-1" onClick={() => onClickNumber("")}><i className="bx bx-x"/></button>
+                                                            </div>
+                                                            : null
+                                                        }
+                                                        {crewActiv ?
+                                                            <select
+                                                                className="w-lg form-select select2 mb-3 mb-xxl-0 w-xl"
+                                                                onChange={(event => {
+                                                                    if (event.target.value!=="Employee"){
+                                                                        onClickCrew(event.target.value)
+                                                                    }else {
+                                                                        setDataEmployee('')
+                                                                    }
+                                                                })}
+                                                                style={{width: "230px"}}
+                                                            >
+                                                                <option>Employee</option>
+                                                                    {employee.map(option => (
+                                                                        <option key={option.id} value={option.id} >
+                                                                            {option?.lastname} {option?.username?.[0]}
+                                                                        </option>
+                                                                    ))}
+                                                                </select> : null
+                                                        }
+                                                        {generatedDateActiv ?
+                                                            <div className="w-100" style={{display: "flex", width: "230px"}}>
+                                                                <Input type="date" className="form-control w-lg " value={generatedDate} style={{width: "200px"}} onChange={event => onClickGDate(event.target.value)}/>
+                                                                <button className="btn btn-danger w-20 ms-1" onClick={() => onClickGDate("")}><i className="bx bx-x"/></button>
+                                                            </div>: null
+                                                        }
+                                                        {invoiceDateActiv ?
+                                                            <div className="w-100" style={{display: "flex", width: "230px"}}>
+                                                                <Input type="date" className="form-control w-lg" value={invoiceDate} style={{width: "200px"}} onChange={event => onClickIDate(event.target.value)}/>
+                                                                <button className="btn btn-danger w-20 ms-1" onClick={() => onClickIDate("")}><i className="bx bx-x"/></button>
+                                                            </div>: null
+                                                        }
+                                                    </Col>
+                                                    <Col >
+                                                        <div className="position-relative text-end">
+                                                            <div className="me-xxl-2 my-xxl-0 d-inline-block">
+                                                                <div className="position-relative">
+                                                                    <Row>
+                                                                        <Col>
+                                                                            <button className={"btn form-control" + color_btn()} onClick={onClickRun}>Run</button>
+                                                                        </Col>
+                                                                    </Row>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </Col>
+                                                </Row>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </Col>
                             </div>
-                          </div>
-                      </Col>
-                  </div>
-              </Card>
-            </Col>
-          </AccordionContent>
+                        </Card>
+                    </Col>
+                </AccordionContent>
 
-          <Col lg="12">
-            <div className="">
-              <div className="table-responsive">
-                  { invoices ?
-                      <>
-                      {map(Array.from(invoices).slice(0,-1), (invoice, key) => (
-                        <Table key={key} className="project-list-table table-nowrap align-middle table-borderless">
-                          <thead>
-                            <tr className="bg-primary text-white">
-                              <th scope="col" style={{width: "200px"}}>
-                                  {invoice?.customer_name}
-                              </th>
-                              <th scope="col" >Crew</th>
-                              <th scope="col" >Number</th>
-                              <th scope="col" >Generated Date</th>
-                              <th scope="col">Invoice date</th>
-                              <th scope="col" style={{width: "100px"}}>Total</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {map(invoice?.invoices, (task, key2) => (
-                            <tr key={key2} onClick={() => onClickOpen(task?.id)}>
-                              <td></td>
-                              <td>{task?.crew_id.username}</td>
-                              <td>{task?.number}</td>
-                              <td>{task?.finished_at.substr(0,10)}</td>
-                              <td>{task?.start_at.substr(0,10)}</td>
-                              <td>$ {task?.total_sum}</td>
-                            </tr>
-                            ))}
-                            <tr >
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                              <td></td>
-                                <td><strong>Total</strong></td>
-                                <td><strong className="text-primary">$ {invoice.total_sum_invoice}</strong></td>
-                            </tr>
-                          </tbody>
-                        </Table>
-                      ))}
-                      </>
-                  : null }
-              </div>
-            </div>
-          </Col>
-          <br/>
-            {(invoices?.length === 2 && invoices?.[0]?.invoices?.length === 1 && filter === "Invoice Number") ? (
-                <div className="w-md text-sm-end">
-                  <button
-                    className="btn btn-warning"
-                    type="submit"
-                    onClick={() => {
-                      setModal(true)
-                    }}
-                  >
-                    Export Invoice PDF
-                  </button>
-                </div>
-            ): null}
-        </Container>
-      </div>
+                <Col lg="12">
+                    <div className="">
+                        <div className="table-responsive">
+                            { invoices ?
+                                <>
+                                    {map(Array.from(invoices).slice(0,-1), (invoice, key) => (
+                                        <Table key={key} className="project-list-table table-nowrap align-middle table-borderless">
+                                            <thead>
+                                                <tr className="bg-primary text-white">
+                                                    <th scope="col" style={{width: "200px"}}>
+                                                        {invoice?.customer_name}
+                                                    </th>
+                                                    <th scope="col" >Crew</th>
+                                                    <th scope="col" >Number</th>
+                                                    <th scope="col" >Generated Date</th>
+                                                    <th scope="col">Invoice date</th>
+                                                    <th scope="col" style={{width: "100px"}}>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {map(invoice?.invoices, (task, key2) => (
+                                                    <tr key={key2} onClick={() => onClickOpen(task?.id)}>
+                                                        <td></td>
+                                                        <td>{task?.crew_id.username}</td>
+                                                        <td>{task?.number}</td>
+                                                        <td>{task?.finished_at.substr(0,10)}</td>
+                                                        <td>{task?.start_at.substr(0,10)}</td>
+                                                        <td>$ {task?.total_sum}</td>
+                                                    </tr>
+                                                ))}
+                                                <tr >
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td><strong>Total</strong></td>
+                                                    <td><strong className="text-primary">$ {invoice.total_sum_invoice}</strong></td>
+                                                </tr>
+                                            </tbody>
+                                        </Table>
+                                    ))}
+                                </>
+                            : null }
+                        </div>
+                    </div>
+                </Col>
+                <br/>
+                {(invoices?.length === 2 && invoices?.[0]?.invoices?.length === 1 && filter === "Invoice Number") ? (
+                    <div className="w-md text-sm-end">
+                        <button
+                            className="btn btn-warning"
+                            type="submit"
+                            onClick={() => {
+                              setModal(true)
+                            }}
+                        >
+                        Export Invoice PDF
+                        </button>
+                    </div>
+                ): null}
+            </Container>
+        </div>
     </React.Fragment>
   );
 };

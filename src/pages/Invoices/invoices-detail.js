@@ -188,10 +188,10 @@ const InvoiceDetail = props => {
           update={updateCustomer}
           onCloseClick={() => setEmailModal(false)}
       />
-      <div className="page-content container align-content-sm-center">
+      <div className="page-content align-content-sm-center">
         <Container fluid>
           {/*{isMobile ? null : <Breadcrumbs title="Invoices" breadcrumbItem="Detail" />}*/}
-          <Breadcrumbs title="Invoices" breadcrumbItem="Invoice Detail" />
+          <Breadcrumbs title="AutoPro" breadcrumbItem="Invoice Detail" />
           <div className={"w-100 text-center text-white bg-"+(invoiceDetail?.status ? colorStatus[invoiceDetail?.status]: "secondary")} style={{borderRadius: "20px", height: "30px", fontSize: "18px"}}>
             {invoiceDetail?.status}
           </div>

@@ -41,7 +41,7 @@ const ListCustomers = ({ item, history }) => {
             {item.full_name}
         </td>
         <td>
-          {item?.email}
+          {item?.email?.substring(0, 40)}{item?.email?.length > 40 ? <>...</>: null}
         </td>
         <td>{item?.street1}</td>
         <td>{item?.country}</td>

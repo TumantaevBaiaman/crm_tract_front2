@@ -72,13 +72,13 @@ const CardCustomer = ({ data }) => {
                           <li className="list-inline-item me-3">
                             <h5 className="font-size-14" id="duedateTooltip">
                               <i className="bx bx-map me-1 text-primary"/>{" "}
-                              {data?.country}
+                              {data?.country}, {data?.postal_code}
                             </h5>
-                          </li>
+                          </li><br/>
                           <li className="list-inline-item me-3">
                             <h5 className="font-size-14" id="duedateTooltip">
                               <i className="bx bx-mail-send me-1 text-primary"/>{" "}
-                              {data?.email}
+                              {data?.email?.substring(0, 40)}{data?.email?.length > 40 ? <>...</>: null}
                             </h5>
                           </li>
                         </ul>
